@@ -1,0 +1,79 @@
+Mistakes:
+The parameter to response.json() must be a JSON type: object, array, string, null, number. If you list a two objects with comma
+you will get an error
+
+If you omit adding 'application/json' in the header of the post request, the thing really won't work. 
+
+You can't pass an asynchronous function to useEffect. A way around it is to create an async function inside useEffect and call it.
+
+I put the jwt-checking middleware before the signup-login router. Which doesn't make sense.
+
+When you create a new instance of a workout in the databse (with Workout.create) you must pass an object. Not a list of strings. 
+
+If you try to apply spread syntax to an object that is null, you will get an error. That is often the case when you write a function
+that adds elemnts toexisting global context that is initially null. Fix with: return{workouts: state.workouts ? [...state.workouts, 
+action.payload] : [action.payload]}
+
+I tried to use forEach instead of map to return the preview of workouts. 
+
+I made a mistake by trying to pass an unwrapped json as the payload. Accessing the payload._id proeprty evaluated to 0. Either unwrap it
+on front end just don't wrap it on the backend (like this: res.json({workout}));
+
+
+
+
+
+
+
+Difficulties:
+"The string did not match the expected pattern" is a common error when working with API's. 
+I can't resolve the CORS error straight away. Even if I add a proxy in package.json, I still get errors and I don't understand why.
+    What worked was simply relaunching the backend and the frontend after adding the proxy. "proxy":"http://localhost:4000"
+
+If after adding changes to the react code you automatically get transferred to the browser, just reaload the VS code. 
+
+If the "unique" validation property is not working and you can sign up with same email several times, just refresh the backend and the 
+frotnend.
+
+I was not sure how to implement the useLogout function. How to properly compose it and how to properly implement it. What makes something
+a custom hook? How do you call this hook without causing a mistake? It turns out that you can't call a hook inside a callback function. 
+After checking the reference files, it looks like that you need to create a function within the hook that is returned by the hook. And 
+then you can pass this function as a callback.
+
+I often get stuck on making the middleware to decode the token. Quite often, when I get JWT malformed, the error is not in the code 
+but in wrong JWW being passed. You should copy the value returned by the thunder client after you send POST login request. 
+
+For some reason, login/signup/addworkout buttons suddenly started resulting in errors. Server crashed. And I could not understand why.
+Then I just realoaded both backend and frotnend and it started working. Fucking hate it. 
+
+I am not usre how material icons work fundamentally. What happens when we add a link to the index.html header? What happens when we add
+a class material-symbols-outlined to the div. 
+
+For some reason, I can't run a useEffect hook inside WorkoutContextProvider function to send request to fetch workouts on every render.
+The fetch request needs the userState.token and it gives an error because userState.token is null for some reason. 
+
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+This error means that some code/function on the backend tried to add/change header of a respone after the headers were set. It is quite
+likely that there is somethng wrong with the middleware. In my case, I wrote next() after a response was sent. 
+
+I get error about "unhandled probise rejection: load failed" that I don't understand. The website works as it should but there are still
+errors for some reason.
+
+
+
+
+Realizations:
+
+Note that in order to check if the jsonwebtoken stored in the localStorage is valid, you do not need to send an artifical request 
+in useEffect inside of AuthContext. Rather, just send a normal request to fetch data for the WorkoutContext. 
+
+Other Notes:
+Elements inside the Routes tag of react-router-dom must all be Route tags. 
+
+Accessing the authorization header token: req.headers.authorization.split(' ')[1]
+
+Don't forget that you can attach data, like user's id, to the request object. req.userId = ... 
+
+If you get error "The string did not match the expected pattern", the problem is probably with fetch request. It could be caused
+both by frontend error or by backend error. 
+

@@ -1,0 +1,62 @@
+body{
+    background-color: black;
+    color: white;
+}
+
+/*Form*/
+.create{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: fit-content;
+    border: 5px solid white;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.create label{
+    font: 3rem;
+    padding: 10px;
+}
+
+.create button{
+    margin: 10px;
+    font: 2rem;
+}
+
+/*Navbar: */
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navbar a{
+    color: white;
+}
+
+/*Homepage that contains the form and display of workouts: */
+.Home{
+    display: grid;
+    grid-template-columns: 3fr 2fr; 
+}
+
+.workoutDetails{
+    border: 6px solid white;
+    padding: 10px; 
+    width: 20%;
+    height: fit-content;
+    border-radius: 30px;
+    margin: 30px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+}
+
+.workoutDetailsPreview{
+    display: flex;
+    flex-wrap: wrap;
+}
