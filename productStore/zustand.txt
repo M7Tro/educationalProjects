@@ -1,0 +1,30 @@
+This is a note file that I made to understand how zustand works.
+
+React relies on state management. When a state changes, a component that consumes this state re-renders. 
+
+States created with useState are local to the component that created it. But you can pass it as a prop to
+access it another component. 
+
+If the application is complex and there is a lot of nesting, passing states as props can get overcomplicated.
+
+Zustand solves this problem by allowing you to create globally accessible states. 
+
+Zustand functions with the concept of stores. 
+
+A store in Zustand is the place where you store your state and functions that work with that state. 
+
+In Zustand, the way you create a store is you use the create function directly from Zustand. 
+
+The create function returns a custom hook that you can use throughout application without having to wrap anything in a provider and 
+without having to pass any props. 
+
+In zustand, to change the state(add, increment, replace with a different string, etc.) you need to make use of the set function that is
+available within the create function. 
+
+You can use the set function by passing it a new hard-coded value of the state. 
+
+Or you can use the set function by passing it a function that will return a new value of the state, while having access to the current
+value of the state. 
+
+You can also define asyncrhonous methods in Zustand: (the promise here immitates some asynchronous code)
+    incrementAsync: async () => {await new Promise((resolve)=>{setTimeout(resolve, 1000)})}

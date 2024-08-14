@@ -1,0 +1,100 @@
+This is a file I made to understand Vite in use with React. 
+
+On Module bundlers:
+
+To build a website, you might have to use a lot of different packages that might be hard to track and manage.
+
+That is why a tool like a module bundler exists. Most popular bundler is webpack. 
+
+Essentially, a module bundler takes in a lot of files/modules with dependencies and spits out static assets.
+
+Imagine having multiple javascript files that rely on each other and turning them into one big 
+javascript file that can actually be used in the browser. This file, called a "javascript bundle", contains
+your source code along with any third-party dependencies that you have imported. 
+
+A bundler like webpack is installed as a dev dependency. And to bundle your production code, you would
+normally run a script that uses the necessary command: "build": "webpack" 
+
+Running npm run build would compile our code into dist/main.js file which is our production code that 
+we would ship to our end user in the browser. 
+
+In most cases, you would need to customize the behaviour of the bundler so that it bundles your files (that
+vary from project to project) appropriately. That is why you would create a webpack.config.js file.
+
+There are many attributes to the webpack config. Main ones are: entry(the entry point to our application),
+output (name of the output file we want to get, output file location)
+
+It is likely that you will rely on files/modules that are not written on javascript and must even be 
+render by some package. Like SASS code. For this, webpack has loaders. Webpack has a specific sass-loader
+that can load and compile a SASS/SCSS file. 
+
+Webpack plugins will even let you to affect the bundler cycle. 
+
+When you use create-react-app command to create a template for a React project, it actually uses 
+webpack under the hood.
+
+
+
+on Vite:
+
+The issue with traditional bundlers like webpack is that when you are developing and make a change, it
+goes through that bundling every single time. As you install more packages, developmen can get really slow.
+
+Vite does not rebundle everything once you make a change. It instead takes advatage of native ES modules 
+in the browser (you can use ES modules in modern browsers. The import/export syntax).
+
+Vite is essentially a dev server, not a module bundler. When it comes time to actually bundle the files
+for production with npm run build , Vite uses Rollup. And Rollup in turn is a module bundler. Eventually,
+Vite is very fast because it doesn't have to rebundle eveything like webpack or parcel. 
+
+
+Vite vs create-react-app:
+
+When you first run create-react-app, webpack will look at the entry point (index.js) and will bundle
+all the files and modules that are imported in that file. It will then transpile the code with babel,
+set up sockets, ..., bundle everything and serve it to the browser.
+
+As you use more modules, create-react-app will have slower development speed due to rebundling. 
+
+Vite pre-bundles the files and does code-splitting on the fly. Changes are seen immediately.
+
+Vite also has a React plugin that makes it easy to set up the application. 
+
+As you add changes, Vite will render them with the browser and display them in real time. 
+
+When you have import and export statements, browser will request them with http. 
+
+Basically, Vite is faster development. 
+
+
+
+Setting up a project:
+
+Run: npm create vite@latest nameOfTheProject 
+
+After you run this, you will be able to select the framework you use for this project (or you can add
+--template react so that it chooses React immediately).
+
+Afte that, you can navigate into the created project folder. 
+
+One of the good features of Vite, is that the project structure is simple/clean. 
+
+package.json has react and reactDOM installed. devDependencies include vite and the react plugin.
+
+There are scripts: dev for running the dev server with vite, build for building the files for production
+using Rollup, preview for previewing the production build once we run the build command. 
+
+There is also vite.config.js. This files defines a defineConfig function where you can pass in your 
+configuration. This is where you can set up your proxy. 
+
+Notice that index.html is not in public folder but right in the root folder. 
+
+
+
+Basically, run the command to set up the project (npm create vite@latest) and then install the necessary modules(npm i). 
+
+
+
+
+
+
