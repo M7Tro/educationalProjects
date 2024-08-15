@@ -1,10 +1,17 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import productRouter from './routes/product.router.js'
+
+dotenv.config();
+
 const app = express();
 
-app.get('/products', (req, res) => {
-    res.send("works")
-})
+mongoose.connect(process.env.MONGO_URI)
+    .then(()=>{
+        app.listen(process.env.PORT, ()=>{console.log("Listening on port: ", process.env.PORT)})
+    })
 
-app.listen(3000, ()=>{
-    console.log("Server started on http://localhost:5000")
-})
+app.use(express.json());
+
+app.use("/api/products", productRouter);

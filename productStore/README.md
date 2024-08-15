@@ -73,6 +73,12 @@ Separate parts of the project that I need to understand:
     Chakra UI 
     basic API building 
 
+When you import, don't forget to add .js to the filename. 
+
+If you are exporting something without the default keyword, don't forget to use curly braces for destructuring. 
+
+When making checks in endpoint handlers inside the controller file with an if statement, use the return 
+keyword. Otherwise you might get an error because headers will be modified after the response is sent. 
 
 Topics I am still not very confident about:
 
@@ -81,3 +87,7 @@ Topics I am still not very confident about:
 -How Chakra UI works? How does the provider work? 
 
 -Advanced usage of Vite. 
+
+-How does the process object work? How can it access the .env file data? process.exit, process.env seem interesting. 
+
+-How does the path module work? How can I use it? 
