@@ -80,6 +80,14 @@ If you are exporting something without the default keyword, don't forget to use 
 When making checks in endpoint handlers inside the controller file with an if statement, use the return 
 keyword. Otherwise you might get an error because headers will be modified after the response is sent. 
 
+
+If you want to set up Vite react template inside the current folder, write npm create vite@lastest . 
+
+
+
+
+
+
 Topics I am still not very confident about:
 
 -How mongodb works exactly? 

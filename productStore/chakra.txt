@@ -1,1 +1,11 @@
 This is a file I made to understand Chakra UI.
+
+In order to learn Chakra UI, I follow Net Ninja's crach course on YouTube: https://youtu.be/iXsM6NkEmFc?si=FKriCfKUShjjLyDE
+
+1 Introduction:
+
+Chakra is a component library. It allows for a faster development. Although the functionality/customizability
+of the components is somewhat limited.
+
+You can use style props to eddit/style each component individually. 
+
