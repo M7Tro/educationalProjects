@@ -2,10 +2,22 @@ This is a file I made to understand Chakra UI.
 
 In order to learn Chakra UI, I follow Net Ninja's crach course on YouTube: https://youtu.be/iXsM6NkEmFc?si=FKriCfKUShjjLyDE
 
-1 Introduction:
+Download the chakra package. Get the ChakraProvider and wrap the application to get access to the components.
 
-Chakra is a component library. It allows for a faster development. Although the functionality/customizability
-of the components is somewhat limited.
+Notable components: Container (centers stuff), Box (like a div), Text, Heading.
 
-You can use style props to eddit/style each component individually. 
+You can style the components using props of the components: p={30}, bg="red.100", etc.
+
+There is a sx prop that lets you pass an object with styles: sx = {boxStyles}
+
+You can implement flex box layouts with the Flex component. It has attributes like justify, alignItems, 
+gap, etc. You can add a spacer tag: <Spacer/>. You can also take advangtage of HStack and VStack. 
+
+If you want to implement a grid layout, you can use SimpleGrid component or, with more flexibility Grid and
+GridItem.
+
+You can apply responsive design using breakpoints:
+fontSize={{base:'24px', md: '40px', lg: '56px'}} or
+color={{base: 'pink', md: 'blue', lg: 'green'}}
+
 
