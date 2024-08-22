@@ -20,4 +20,9 @@ You can apply responsive design using breakpoints:
 fontSize={{base:'24px', md: '40px', lg: '56px'}} or
 color={{base: 'pink', md: 'blue', lg: 'green'}}
 
+A convenient component of Chakra is List and ListItem. You can use it to arrange react-router-dom NavLinks 
+for a sidebar with links. You can add spacing with spacing={4}
+
+Chakra also offers you icons that you can use. You will need to install them: npm i @chakra-ui/icons.
+To implement a List with an icons, use ListIcon component with its as={} property. 
 
