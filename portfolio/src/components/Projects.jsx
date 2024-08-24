@@ -1,4 +1,5 @@
 import {PROJECTS} from '../constants/index.js';
+import {motion} from 'framer-motion';
 
 const Projects = () => {
   return (
@@ -6,7 +7,11 @@ const Projects = () => {
         <h2 className="my-20 text-center text-4xl">Projects</h2>
         <div className="">
             {PROJECTS.map((project, index) => (
-                <div key={index} className='mb-8 flex flex-wrap lg:justify-center'>
+                <motion.div 
+                    initial={{opacity:0, y:100}}
+                    whileInView={{opacity:1, y:0}}
+                    transition={{duration:.7}}
+                    key={index} className='mb-8 flex flex-wrap lg:justify-center'>
                     <div className="w-full lg:w-1/4">
                         <img src={project.image} width={150} height={150} alt={project.title} 
                         className='mb-6  rounded'/>
@@ -19,7 +24,7 @@ const Projects = () => {
                             key={index}>{technology}</span>
                         ))}
                     </div>  
-                </div>
+                </motion.div>
             ))}
         </div>
     </div>

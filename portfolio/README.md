@@ -1,6 +1,6 @@
 This is a portfolio website I made for a friend based on this tutorial: https://www.youtube.com/watch?v=_63mEm3AMSY
 
-It uses React, Tailwind CSS, Vite, React Icons, Google Fonts (Inter).
+It uses React, Tailwind CSS, Vite, React Icons, Google Fonts (Inter), Framer Motion for simple animations.
 
 assets folder has the images and constants folder has the texts. 
 
