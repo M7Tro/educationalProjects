@@ -84,7 +84,7 @@ keyword. Otherwise you might get an error because headers will be modified after
 If you want to set up Vite react template inside the current folder, write npm create vite@lastest . 
 
 
-
+useColorMode hook is used to implement the dark/light mode toggle button. 
 
 
 
