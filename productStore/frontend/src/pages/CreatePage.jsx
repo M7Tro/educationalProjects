@@ -11,7 +11,7 @@ export default function CreatePage () {
 
     const toast = useToast();
 
-    const {createProduct, products} = useProductStore();
+    const {createProduct} = useProductStore();
 
     const handleAddProduct = async () => {
         const {success, message} = await createProduct(newProduct);
