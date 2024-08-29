@@ -12,5 +12,9 @@ mongoose.connect(process.env.MONGO_URI)
     .then(()=>{app.listen(PORT, console.log("Listening on port " + PORT))})
 
 app.use(express.json());
+app.use((req, res, next) => {
+    console.log("Received request: ", req.method, req.path);
+    next();
+})
 
 app.use("/api/products", productRouter);

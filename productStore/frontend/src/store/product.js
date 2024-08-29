@@ -15,7 +15,6 @@
 //prefix to request that start with /api
 
 import {create} from 'zustand';
-import {useState} from 'react';
 
 //The callback function that you pass into create() returns an object: (set)=>({})
 export const useProductStore = create((set)=>({
@@ -25,7 +24,7 @@ export const useProductStore = create((set)=>({
         if(!newProduct.name || !newProduct.price || !newProduct.image){
             return {success: false, message: "Please fill in all the fields"}
         }
-        const res = await fetch("/api/products", {
+        const res = await fetch("/api/products/", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newProduct)
@@ -33,5 +32,23 @@ export const useProductStore = create((set)=>({
         const data = await res.json();
         set((state) => ({products: [data.data, ...state.products]}))
         return {success: true, message: "Product created successfully"}
+    },
+    fetchProducts: async ()=>{
+        const res = await fetch('/api/products/');
+        const data = await res.json();
+        if(data.success){
+            set({products: data.data})
+        }
+    },
+    deleteProduct: async (id) => {
+        const res = await fetch(`/api/products/${id}`, {
+            method: "DELETE"
+        })
+        const json = await res.json();
+        if(!json.success){
+            return {success: false, message: json.message};
+        }
+        set((state)=> ({products: state.products.filter(product => product._id !== id)}));
+        return {success: true, message: json.message};
     }
 }))
