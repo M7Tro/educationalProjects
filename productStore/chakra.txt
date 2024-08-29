@@ -43,3 +43,6 @@ Go to main.jsx and import extendTheme from chakra. Then write: cosnt theme = ext
 You pass in the properties that you want to change. And then you pass the theme to the ChakraProvider.
 
 
+Modal uses the useDisclosure hook that returns a few things to add functionality to the modal:
+    const {isOpen, onOpen, onClose} = useDisclosure();
+
