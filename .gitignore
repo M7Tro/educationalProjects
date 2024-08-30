@@ -25,3 +25,4 @@ dist-ssr
 
 #adding the .env file:
 .env
+/productStore/.env
