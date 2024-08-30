@@ -10,22 +10,20 @@ const About = () => {
         </h2>
         <div className="flex flex-wrap">
             <motion.div 
-                initial={{x:-100, opacity:0}}
+                initial={{x:+100, opacity:0}}
                 whileInView={{x:0, opacity:1}}
                 transition={{duration:0.5, delay:0}}
-                className="w-full lg:w-1/2 lg:p-8">
-                <div className="flex items-center justify-center">
-                    <img className='rounded-2xl' src={aboutImg} alt="About" />
-                </div>
+                className="w-full lg:w-1/2 lg:p-8 flex items-center justify-center"
+            >
+                <img className='rounded-2xl' src={aboutImg} alt="About" width={500}/>     
             </motion.div>
             <motion.div 
-                initial={{x:100, opacity:0}}
+                initial={{x:-100, opacity:0}}
                 whileInView={{x:0, opacity: 1}}
                 transition={{duration:0.5, delay:0}}
-                className="w-full lg:w-1/2 ">
-                <div className="flex justify-center lg:justify-start ">
-                    <p className='my-2 maxw-xl text-2xl py-6'>{ABOUT_TEXT}</p>
-                </div>
+                className="w-full lg:w-1/2 flex flex-col lg:justify-center "
+            >
+                <p className='maxw-xl text-2xl'>{ABOUT_TEXT}</p>
             </motion.div>
         </div>
     </div>

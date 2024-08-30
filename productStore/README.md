@@ -99,3 +99,39 @@ Topics I am still not very confident about:
 -How does the process object work? How can it access the .env file data? process.exit, process.env seem interesting. 
 
 -How does the path module work? How can I use it? 
+
+
+
+
+Deployment:
+Go into the server.js file. Import the path module. 
+
+Get this: const __dirname = path.resolve(); 
+
+Check if the process is run as production. 
+
+If it is, we want the frontend folder to be a static asset. 
+
+When you run npm run build, it gives you a dist folder. 
+
+The dist folder is the one that you will use in production. 
+
+You make the dist folder a static asset with this:
+    app.use(express.static(path.join(__dirname, "/frontend/dist")))
+
+For all the requests other than to '/api/products', we want to send the React's index.js file:
+    app.get("*", (req,res)=>{res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))})
+
+For deployment, delete both node_modules folders, delete the dist folder 
+
+In the root folder's package.json create a script for building:
+    "build": "NODE_ENV=development npm install && npm install --prefix frontend && npm run build --prefix frontend"
+
+Check if the command works. 
+
+Once the application is built, we need to start it. We do it with another script:
+    "start": "NODE_ENV=production node backend/server.js"
+
+Eventually, you push the code to GitHub. 
+
+Then you go to render.com. 
