@@ -25,4 +25,5 @@ dist-ssr
 
 #adding the .env file:
 .env
+/MERN_AUTH_workoutBlogs/backend/.env
 /productStore/.env
