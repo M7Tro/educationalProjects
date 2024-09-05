@@ -32,7 +32,7 @@ Create a folder db with a file connectToMongoDB.js
 
 In this file, we connect to the database. Create an async function connectToDB() that has a try-catch block. Use this function to connect to the databse inside app.listen. 
 
-Create a folder models. Create a file user.model.js. Import the mongoose package. The userSchema will have fields for full name, username, password, gender.The gender field has enum:["male", "female"] for specifying certain possibe values. Profile picture string. Then create the "User" model. 
+Create a folder models. Create a file user.model.js. Import the mongoose package. The userSchema will have fields for full name, username, password, gender, profilePic.The gender field has enum:["male", "female"] for specifying certain possibe values. Profile picture string. Then create the "User" model. 
 
 Don't forget to include json-parsing middleware for incoming requests. 
 
