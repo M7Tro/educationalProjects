@@ -27,3 +27,4 @@ dist-ssr
 .env
 /MERN_AUTH_workoutBlogs/backend/.env
 /productStore/.env
+/chatApp/.env
