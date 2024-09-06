@@ -2,7 +2,7 @@ import User from '../models/User.js';
 import bcryptjs from 'bcryptjs';
 
 const login = async (req, res) => {
-
+    res.send("This is login")
 }
 
 const logout = async (req, res) => {
@@ -34,13 +34,19 @@ const signup = async (req, res) => {
             profilePic
         })
 
-        await newUser.save(); 
-        res.status(200).json({
-            _id: newUser._id,
-            fullname: newUser.fullname,
-            username: newUser.username,
-            profilePic: newUser.profilePic,
-        })
+        if(newUser){
+            await newUser.save(); 
+            res.status(200).json({
+                _id: newUser._id,
+                fullname: newUser.fullname,
+                username: newUser.username,
+                profilePic: newUser.profilePic,
+                gender: newUser.gender
+            })    
+        }else{
+            res.status(400).json({error:"Invalid user data"});
+        }
+        
 
     }catch(err){
         res.status(500).json({error: err.message})

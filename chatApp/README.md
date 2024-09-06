@@ -53,3 +53,28 @@ Generate the salt, hash the password and pass the hashed value as a password int
 I will now try to implement this in code myself before watching the tutorial further.
 
 I have implemented the signup functionality. I can add users into the database. What is interesting is that unlike before, I don't send back the wholse user document as a server response. I only send the relevant data: user id, profile picture link, full name and the user name. 
+
+
+Now it is time to implement the JWT functionality. If the new user is created successfully with new User() we create the json web token.
+
+We create a separate folder utils with a file generateToken.js 
+
+Inside we create a function that accepts user id and the response object. It creates the token with jwt.sign. Don't forget to add a secret word in the .env file. 
+
+In the tutorial, he opens a bash terminal and creates a random key with this command: openssl rand -base64 32
+
+In the options object of jwt.sign, you can specify the expiration date.
+
+After the token is created, we want to engrain it into the cookie using the response object with the name of "jwt" with some options: res.cookie("jwt", token, {maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly: true /*users can't access this code with javascript XSS cross-site scripting atacks */, sameSite: "strict" //CSRF attacks cross-site request forgery attacks
+secure: node.env.NODE_ENV !== "development })
+
+Then you export this function. In order for cookies to work, don't forget to add middleware that parses the cookies: app.use(cookeParser()). cookieParser is exported by default by the cookie-parser package. 
+
+Now go on to create the login handler. Set up a try-catch block. Get email and passwod from the request body. Get a user with User.findOne(). Then check password with bcrypt.compare(password, user?.password || "");
+
+Notice this interesting things: user?.password. If the user is null or undefined, trying to access the password will not throw an error because of the .? optional chaining operator. 
+
+If user is null or password is incorrect, respond with an error. 
+
+If all is well, generate the token and send back the user data (same as for signup).
+
