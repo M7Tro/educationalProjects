@@ -11,6 +11,7 @@ const login = async (req, res) => {
         if(!user || !passwordIsCorrect){
             res.status(400).json({message: "Email or password is incorrect"});
         }
+        jwtCookie(user._id, res);
         res.status(200).json({
             username: user.username,
             fullname: user.fullname,
@@ -24,7 +25,13 @@ const login = async (req, res) => {
 }
 
 const logout = async (req, res) => {
-
+    try{
+        //Delete the cookie?
+        res.cookie("jwt", "", {maxAge:0});
+        res.status(200).json({message:"Logged out successfully"});
+    }catch(err){
+        res.status(400).json({error: "Error while logging out"})
+    }
 }
 
 const signup = async (req, res) => {

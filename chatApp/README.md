@@ -89,3 +89,8 @@ I also made a mistake by trying to use httpOnly property when singing the jwt, n
 The sameSite:"strict" property makes sure that cookies are only sent with requests that originate from the same site as the cookie. It prevents from exploits by cross-site requests.
 
 The secure flag ensures that if we are not in development, the cookie is only sent with HTTPS connections. 
+
+I have enabled the login functionality. Next step is logout. 
+
+Log out is simply setting the "jwt" cookie to an empty string with a maxAge of 0 and sendign a json message of success. 
+
