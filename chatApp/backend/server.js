@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import authRouter from './routes/auth.router.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
@@ -12,8 +13,9 @@ mongoose.connect(process.env.MONGO_URI)
         app.listen(PORT, ()=>{console.log("Listening on port", PORT)})
     })
 
-//Middleware: (parser, logger)
+//Middleware: (json parser, cookie parser, logger)
 app.use(express.json());
+app.use(cookieParser());
 app.use((req, res, next)=>{
     console.log("Received request: ", req.method, req.path);
     next();

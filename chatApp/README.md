@@ -78,3 +78,9 @@ If user is null or password is incorrect, respond with an error.
 
 If all is well, generate the token and send back the user data (same as for signup).
 
+I will now try to implement the JWT and login part in code myself.
+
+First, I don't really understand how the cookie is set. Like we get the token, right? How do we store it as cookie? In tutorial, he simply sets res.cookie("jwt", token). But I can't find it in documentation for cooke-parser.
+
+I found out that res.cookie is actually part of express. I thought that the cookie parser middleware modifies the response object, but setting a cookie with res.cookie() is actually part of express functionality. 
+

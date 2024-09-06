@@ -1,8 +1,14 @@
 import User from '../models/User.js';
 import bcryptjs from 'bcryptjs';
+import jwtCookie from '../utils/tokenCookie.js';
 
 const login = async (req, res) => {
-    res.send("This is login")
+    try{
+        //Start the validation of provided emails and passwords here: 
+
+    }catch(err){
+        res.status(500).json({error: err.message})
+    }
 }
 
 const logout = async (req, res) => {
@@ -36,6 +42,7 @@ const signup = async (req, res) => {
 
         if(newUser){
             await newUser.save(); 
+            jwtCookie(newUser._id, res);
             res.status(200).json({
                 _id: newUser._id,
                 fullname: newUser.fullname,
