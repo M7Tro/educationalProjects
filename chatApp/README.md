@@ -51,3 +51,5 @@ Now, it is time to enable the password hashing functionality. Import bcryptjs in
 Generate the salt, hash the password and pass the hashed value as a password into the user object created with new User({...}).
 
 I will now try to implement this in code myself before watching the tutorial further.
+
+I have implemented the signup functionality. I can add users into the database. What is interesting is that unlike before, I don't send back the wholse user document as a server response. I only send the relevant data: user id, profile picture link, full name and the user name. 
