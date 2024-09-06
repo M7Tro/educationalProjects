@@ -5,7 +5,19 @@ import jwtCookie from '../utils/tokenCookie.js';
 const login = async (req, res) => {
     try{
         //Start the validation of provided emails and passwords here: 
-
+        const {username, password} = req.body;
+        const user = await User.findOne({username});
+        const passwordIsCorrect = await bcryptjs.compare(password, user?.password || "");
+        if(!user || !passwordIsCorrect){
+            res.status(400).json({message: "Email or password is incorrect"});
+        }
+        res.status(200).json({
+            username: user.username,
+            fullname: user.fullname,
+            gender: user.gender,
+            _id: user._id,
+            profilePic: user.profilePic
+        })
     }catch(err){
         res.status(500).json({error: err.message})
     }
