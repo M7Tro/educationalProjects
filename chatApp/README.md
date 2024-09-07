@@ -112,5 +112,45 @@ Next step is to add the message functionality for this backend API. Add an "/api
 
 Create message.router.js 
 
-Add a post request handler for "/sednd/:id". The :id parameter is id of  auser that wants to send a message. This handler uses the sendMessage controller from message.controller.js file 
+Add a post request handler for "/sednd/:id". The :id parameter is id of the user to send the message to. This handler uses the sendMessage controller from message.controller.js file 
+
+Inside the sendMessage controller, we get the message from the request body, id from request parameters. We will also need the id of the sender. The way we get is by adding middleware that checks is user is logged in using the jwt cookie. If yes, it gets the id from the cookie and attaches it to the request object that will be then accessible inside the sendMessage controller. 
+
+To implement it in code, go to the router and modify the post handler: router.post('/send/:id', protectRoutes, sendMessage); We have added the protectRoutes function. 
+
+Create a folder middleware and add a file protectRoutes.js
+
+Define the function protectRoute that takes in request, response and next.
+
+Inside, add a try-catch block. Get the token from the request object with req.cookie.jwt. 
+
+If it exists, get decoded value with jwt.verify. If decoded value is valid, get the user from the database using the decoded id. Add this to get the user from the database without the password: .select('-password');
+
+If the user exists, attach it to the request object with req.user = user; and then call next(); 
+
+It might be wise to rename the id's inside sendMessage to not confuse anything:
+    const {id:receiverId} = req.params;
+    const senderId = req.user._id;
+
+Then you need to find a conversation in the database that contains both the sender and the user id inside the participants field.
+
+You do it using the Conversation model: let conversation = await Conversation.findOne({participants: {$all: [senderId, receiverId]}});
+
+$all is a mongoDB operator that matches a field to an array that contains all of the values specified with the operator. 
+
+Notice that we use the 'let' keyword to get the conversation from the database instead of const, because we are going to change the conversation. 
+
+Check if conversation is null. If it is, then we create a new one with Conversation.create();
+
+Then, create a new messgae using the Message model. If the message is successfully created, push the message id into the conversation's  messages array. 
+
+Don't forget to save the conversation and the message. You can do it in a concise way with:
+    Promise.all([conversation.save(), newMessage.save()]); 
+This way, those promises will be done in parallel, compared to sequentially if we used await for each separate save. 
+
+Now, I will try to implement this code myself. But to be honest, I feel a bit lost/overwhelmed/confused. Let's recap.
+
+We want to add functionality to an endpoint that get a user id as a request parameter and a message inside the request body. For now, all we want is to add the new message to the database and also create/update the conversation between two users. 
+
+The first step I see is to add middleware that checks for cookies and attaches a user id to the request object. The middleware is protectRoute. 
 
