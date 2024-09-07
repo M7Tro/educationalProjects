@@ -108,3 +108,9 @@ The messages field is also an array of objects of type ObjectId schema type and 
 
 Also create add the timestamps.
 
+Next step is to add the message functionality for this backend API. Add an "/api/messages" endpoint that uses the messageRouter. 
+
+Create message.router.js 
+
+Add a post request handler for "/sednd/:id". The :id parameter is id of  auser that wants to send a message. This handler uses the sendMessage controller from message.controller.js file 
+

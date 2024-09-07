@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import authRouter from './routes/auth.router.js';
 import cookieParser from 'cookie-parser';
+import messageRouter from './routes/message.router.js';
 
 dotenv.config();
 
@@ -23,3 +24,4 @@ app.use((req, res, next)=>{
 
 //Routers:
 app.use("/api/auth", authRouter);
+app.use("/api/messages", messageRouter);
