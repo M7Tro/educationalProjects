@@ -168,3 +168,18 @@ await Conversation.findOne({participants: {$all: [senderId, receiverId]}}).popul
 
 The populate methods wills in the messages field with an array of objects, each object corresponging to the message id that it originally had. 
 
+I implemented it. 
+
+Now, it is time to make the user controllers and routes to CRUD users. The endpoint is "/api/routes". The router is userRoutes. The point of this is to get users to be displayed on the sidebar.
+
+Create user.routes.js; Add user.controller.js; We do not need to create a new model. We will use the existing User model.
+
+Then create a controller file with a function getUsersForSidebar.
+
+Typically, add a try-catch block.
+
+get the logged in user id -> find all conversations where the user is present -> get the other user's id and compose and array of all user's that the logged in has conversations with 
+
+First, we get filteredUsers. We use the $ne: loggedInUserId to get all user values that do not match the specified value. 
+
+Use the field selection by adding select(["-password"]) to the query.
