@@ -94,3 +94,17 @@ I have enabled the login functionality. Next step is logout.
 
 Log out is simply setting the "jwt" cookie to an empty string with a maxAge of 0 and sendign a json message of success. 
 
+I was wrong for thinking that the next step is the frontend. While we are doen with the auth part API, we now need to build the backend for storing and receiving messages. 
+
+We will have two models. Conversations with an id, array of participants' id's and array messages sent. Then there is also the message model with id, sender and receiver id, and the message itself. 
+
+Go into the model folder, create message.model.js. The schema has senderId, receiverId, message. senderId and receiverID have same settings: type is referenced to the schemaType mongoose.Schema.types.ObjectId, ref:"User" and required: true. Also add the timestamps. 
+
+Now create the coversation model file. 
+
+There is a participants array with objects of type mongoose.Schema.types.objectId and ref:"User"
+
+The messages field is also an array of objects of type ObjectId schema type and referenced to the "Message model. Default value is and empty array []. 
+
+Also create add the timestamps.
+
