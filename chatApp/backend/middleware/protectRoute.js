@@ -9,4 +9,4 @@ export const protectRoute = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.SECRET);
     req.userId = decoded.userId;
     next();
-}
+} 
