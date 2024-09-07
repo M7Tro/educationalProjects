@@ -152,5 +152,19 @@ Now, I will try to implement this code myself. But to be honest, I feel a bit lo
 
 We want to add functionality to an endpoint that get a user id as a request parameter and a message inside the request body. For now, all we want is to add the new message to the database and also create/update the conversation between two users. 
 
-The first step I see is to add middleware that checks for cookies and attaches a user id to the request object. The middleware is protectRoute. 
+
+I have done it. Had some difficultie but all is resolved.
+
+Next thing to do is make an endpoint for getting messages from two users. 
+
+We want to get a message from the current user (id is tored in cookie jwt) and the user whose id is passed as a request parameter.
+ 
+The request handler uses the same protectRoute middleware to get decode the cookie file and attach its contents to req.userId. 
+
+But we create a new request handler getMessages. 
+
+You search the conversation of two users using their id's and get the messages array. But remember that this array contains id's and not the messages themselves. We want to have an array of messages. We can do it using the populate() method provided by mongoose:
+await Conversation.findOne({participants: {$all: [senderId, receiverId]}}).populate("messages");
+
+The populate methods wills in the messages field with an array of objects, each object corresponging to the message id that it originally had. 
 

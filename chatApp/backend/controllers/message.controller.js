@@ -28,3 +28,17 @@ export const sendMessage = async (req,res) => {
         res.status(500).json({error: err.message});
     }
 } 
+
+export const getMessages = async (req, res) => {
+    try{
+        const {id:receiverId} = req.params;
+        const senderId = req.userId;
+        const conversation = await Conversation.findOne({participants:{$all:[senderId, receiverId]}})
+            .populate("messages");
+        if(!conversation) return res.status(500).json({message: "Conversation is empty and has no messages"});
+        const messages = conversation.messages;
+        res.status(200).json(messages);
+    }catch(err){
+        res.status(400).json({error: err.message});
+    }
+}
