@@ -204,4 +204,15 @@ Add folders pages and components.
 
 We will have three different pages: signup, login, home. Each page has a separate folder. 
 
+Set up the App component. It has a main div with some padding, height set to screen height, display is flex, items are centered on both main and cross axis. 
 
+First, let's develop the Login page. 
+
+We will use a background image. It is stored in the 'public' folder.
+
+Go into index.css and add some styling to the body to set the image as the background:
+    background with gradient and image, no-repeat, size that covers, position center, attachment fixed. 
+
+For some reason, the app does not cover whole page. Only a small narrow stripe. 
+
+I fixed it. I wrote h-scren instead of h-screen for the App component. Now it takes p the whole height of the screen. Nice. 
