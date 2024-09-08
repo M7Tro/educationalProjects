@@ -237,3 +237,9 @@ We make a form. With cool transparent background (get classnames from tailwind g
 I will now try to implement the form with one input field. 
 
 Add a link "not registered yet?" that underlines on hover. Also add a login button. 
+
+
+The SignUp page is made the same way but with more fields. There will be a sepatare component for GenderChecBox.
+
+I couldn't increase the size of checkboxes using vanilla css so I used the checkbox component from daisy. 
+
