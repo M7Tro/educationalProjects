@@ -183,3 +183,25 @@ get the logged in user id -> find all conversations where the user is present ->
 First, we get filteredUsers. We use the $ne: loggedInUserId to get all user values that do not match the specified value. 
 
 Use the field selection by adding select(["-password"]) to the query.
+
+
+
+It is now time to make the frontend. 
+
+Go into the frontend folder, launch the development server. 
+
+Then install tailwind for vite. Paste necessary stuff into tailwind.config.js. Paste code into index.css. 
+
+Then you also need to install daisy UI. Run the command in terminal, add plugins into tailwind.config.js. 
+
+Make sure that daisy ui compnents and tailwind css with some buttons. 
+
+You can download tailwind intellisence extension to see what is applied to elements with tailwind. 
+
+We will have several pages with navigation relying on react-router-dom. 
+
+Add folders pages and components. 
+
+We will have three different pages: signup, login, home. Each page has a separate folder. 
+
+
