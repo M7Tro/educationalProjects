@@ -208,7 +208,7 @@ Set up the App component. It has a main div with some padding, height set to scr
 
 First, let's develop the Login page. 
 
-We will use a background image. It is stored in the 'public' folder.
+We will use a background image for the body. Use index.css. It is stored in the 'public' folder.
 
 Go into index.css and add some styling to the body to set the image as the background:
     background with gradient and image, no-repeat, size that covers, position center, attachment fixed. 
@@ -216,3 +216,24 @@ Go into index.css and add some styling to the body to set the image as the backg
 For some reason, the app does not cover whole page. Only a small narrow stripe. 
 
 I fixed it. I wrote h-scren instead of h-screen for the App component. Now it takes p the whole height of the screen. Nice. 
+
+
+For the Login page, create an enclosing div with flex display, items centered vertically and horizontally. Main axis is vertical. 
+
+Create a rectngle/window with transparent effect. You can get the tailwind classes required from tailwind glassmorphism generator. 
+
+Add a heading Login ChatApp. 
+
+Below the heading, create a form. 
+
+Use label tags and modify them with daisu UI. className = "label"
+
+You know, I think I am doing it wrong with all this. Trying to memorize everything. It's not possible. And it's not wise. My notes should contain more declarative statements and only necessary imperative statements. 
+
+That is, describe the essential components/parts of the project, but only decsribe code when necessary. Don't turn this documentation into a 1000-step manual. 
+
+We make a form. With cool transparent background (get classnames from tailwind glassmorphism generator). It has a header at the top. 
+
+I will now try to implement the form with one input field. 
+
+Add a link "not registered yet?" that underlines on hover. Also add a login button. 
