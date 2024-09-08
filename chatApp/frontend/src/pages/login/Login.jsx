@@ -9,7 +9,7 @@ export default function Login () {
                     <label className="text-2xl w-4/5 text-left font-semibold">Username</label>
                     <input type="text" placeholder="Type here" className="input input-bordered w-3/4" />
                     <label className="text-2xl w-4/5 text-left font-semibold">Password</label>
-                    <input type="password " placeholder="Type here" className="input input-bordered w-3/4" />
+                    <input type="password" placeholder="Type here" className="input input-bordered w-3/4" />
                     <a href="#" className="text-xl hover:underline">
                         Not registered yet?
                     </a>
