@@ -243,3 +243,33 @@ The SignUp page is made the same way but with more fields. There will be a sepat
 
 I couldn't increase the size of checkboxes using vanilla css so I used the checkbox component from daisy. 
 
+Now, we shall start creating the homepage. 
+
+The homepage is a transparent rectangle with search and sidebar for chats on the left and a certain chat/conversatino on the right. 
+
+The homepage is wrapped in div. This div is essentially the rectangle dispalyed on the backgrond image that is always present on the back. The div has a bunch of tailwind classes applied to it:
+    flex display, responsive height that increases with screen dimensions, rounded corners, hidden overflow, bg-clip-padding to ensure that the gray transparent background spreeds beyon content onto padding, backgrop-filter applies a filter effect and backgrop-blur-lg specifies that it is a blur effect, background-opacity-0 makes the background transparent. 
+
+Basically, on a high level, Home is a rectangle with responsive height that has blurry/transparent background that spreads to padding.
+
+The Sidebar and the MessageContainer are going to be two separate ocmponents that we add into the components folder with each component having its own folder 
+
+Inside the sidebar, we have three components. The search input field. The conversations. And at the bottom there is a logout button. 
+
+We split this into three different components. What is interesting about this tutorial is that the author ("As a Programer") has folder for each page/major component and the folder containes the parent and the relevant children. It seems to be convenient. 
+
+Below the SearchInput component there is a divider (use little tailwind/daisy to make it from div).
+
+And then there is the Conversations component and LogoutButton bellow it. 
+
+SearchInput is relatively simple. A parent form component with an input from daisyUI. 
+To the right of the input field is the search button. Use daisyUI and react icons. 
+
+The form itself is flexible with items center on cross axis and some gaps. 
+
+Get the Home into the App and see how it all works. 
+
+I think that when working on stuff with different files, it might be wise to locate the files with decreasing parentship from left to right. Like Home -> Sidebar -> SearchInput 
+
+I installed react-icons from the root folder using npm install react-icons --prefix frontend 
+

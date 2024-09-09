@@ -6,7 +6,7 @@ export default function Signup () {
             <div className="h-fit w-full bg-gray-700 
             rounded-md bg-clip-padding backdrop-filter 
             backdrop-blur-sm bg-opacity-20 border border-gray-100">
-                <form className="flex flex-col justify-evenly items-center p-4 h-full">
+                <form className="flex flex-col justify-evenly items-center p-4 h-full text-white">
                     <h1 className="text-4xl mb-3">ChatApp <span className="font-bold text-blue-400">Sign Up</span></h1>
                     
                     <label className="text-2xl w-4/5 text-left font-semibold my-4" >Full Name</label>

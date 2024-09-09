@@ -4,13 +4,13 @@ export default function GenderBox () {
             <div className="form-control ml-3">
                 <label className="flex items-center gap-3">
                     <span>Male</span>
-                    <input type="checkbox" className="checkbox" />
+                    <input type="checkbox" className="checkbox checkbox-primary" />
                 </label>
             </div>
             <div className="form-control">
                 <label className="flex items-center gap-3">
                     <span>Female</span>
-                    <input type="checkbox"  className="checkbox" />
+                    <input type="checkbox"  className="checkbox checkbox-primary" />
                 </label>
             </div>
         </div>
