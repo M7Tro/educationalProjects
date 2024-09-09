@@ -271,5 +271,15 @@ Get the Home into the App and see how it all works.
 
 I think that when working on stuff with different files, it might be wise to locate the files with decreasing parentship from left to right. Like Home -> Sidebar -> SearchInput 
 
-I installed react-icons from the root folder using npm install react-icons --prefix frontend 
+I installed react-icons from the root folder using npm install react-icons --prefix frontend. This is cool. I am getting stronger.
+
+Now let's proceed to make the Conversations component. We will also create a component Conversation. 
+
+Conversations is a parent div with flexible display, vertical padding, vertical axis, automatic overflow and a bunch of Conversation components inside (for now just input them). Automatic overflow fits perfectly because it will output conversation components without scroll first but then add it if necessary. 
+
+The Covnersation component is basically a horizontal stripe with an icon, a name and an emoji. There is a divider bellow each Conversation.
+
+The Conversation component is a parent fragment <></> with two divs inside. It changes background on hover. 
+
+DaisyUI has an avatar component that can dispay online/offline status.
 

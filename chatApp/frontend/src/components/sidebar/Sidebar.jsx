@@ -1,11 +1,12 @@
-import SearchInput from "./SearchInput"
+import SearchInput from "./SearchInput";
+import Conversations from "./Conversations";
 
 export default function Sidebar () {
     return (
         <div>
             <SearchInput/>
-            {/* Divider */}
-            {/* <Conversations/> */}
+            <div className="divider divider-info px-3 "></div>
+            <Conversations/>
             {/* <LogoutButton/> */}
 
         </div>
