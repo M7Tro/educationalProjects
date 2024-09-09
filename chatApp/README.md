@@ -283,4 +283,16 @@ The Conversation component is a parent fragment <></> with two divs inside. It c
 
 DaisyUI has an avatar component that can dispay online/offline status.
 
-On the same level with the avatar is a div for full name and emoji 
+On the same level with the avatar is a div for full name and emoji.
+
+After adding the Conversations component, let's work on the LogoutButton component. 
+
+Don't forget to add a border to the sidebar. 
+
+I ditched using the divider between search input and conversations because I couldn't set the color I want. Instead I just used a div with bottom border. 
+
+For making the logout button, we have a parent div with margin-top set to auto. That way, the button is automatically at the bottom. 
+
+I added overflow:hidden to the body to avoid white shit appearing when someone scrolls too much. 
+
+The next step is to create the MessageContainer component. 
