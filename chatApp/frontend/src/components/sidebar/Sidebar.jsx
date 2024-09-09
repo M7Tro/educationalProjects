@@ -5,7 +5,7 @@ export default function Sidebar () {
     return (
         <div>
             <SearchInput/>
-            <div className="divider divider-info px-3 "></div>
+            <div className="divider divider-neutral w-full"></div>
             <Conversations/>
             {/* <LogoutButton/> */}
 

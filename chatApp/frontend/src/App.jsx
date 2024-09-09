@@ -1,5 +1,5 @@
-import Login from './pages/login/Login';
-import Signup from './pages/signup/Signup';
+//import Login from './pages/login/Login';
+//import Signup from './pages/signup/Signup';
 import Home from './pages/home/Home';
 
 export default function App () {

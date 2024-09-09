@@ -283,3 +283,4 @@ The Conversation component is a parent fragment <></> with two divs inside. It c
 
 DaisyUI has an avatar component that can dispay online/offline status.
 
+On the same level with the avatar is a div for full name and emoji 
