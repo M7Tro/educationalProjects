@@ -296,3 +296,29 @@ For making the logout button, we have a parent div with margin-top set to auto. 
 I added overflow:hidden to the body to avoid white shit appearing when someone scrolls too much. 
 
 The next step is to create the MessageContainer component. 
+
+Create a new folder inside components for messages and a new component file for MessageContainer. 
+
+The MessageContainer has a header (who is receiver of the message), messages (in clouds; right from you; left from receiver; Messages have icons and time codes;), input field for new message with a send button. 
+
+The MessageContainer has responsive width that increases with screen size. 
+
+Again, MessageContainer has three components: header (made directly in the container), Messages component, and the MessageInput component. 
+
+We will start with making the Messages component. We set overflow to auto so that a scrollbar appears when there are too many messages. 
+
+Initially, just wrap a bunch of hardcoded Message components inside the main parent div of the Messages. 
+
+Now let's create the Message component. 
+
+Turns out, the Message itself is done pretty simply: there is a component for that in DaisyUI. The component has class "chat". "chat-start" and "chat-end" position the messages to the left and to the right. 
+
+You then use classes like "chat-bubble" and "chat-image avatar" to build the message that you like. 
+
+"chat-footer" is used for displaying the time code. 
+
+The scrollbar that appears by default as a result of setting "overflow-auto" is quite ugly. So we change it inside index.css with a  bunch of interesting CSS I don't understand. The author added stuff like ::-webkit-scrollbar{...}. Need to check that probably. 
+
+I will now try to implement the MessageContainer.
+
+I encountered a challenge with the Message and Messages compnents. Message was too big for some reason and different Message components overlapped each other. I fixed it by setting the icon's height to fit. The overflow-auto property of Messages did not work after that. I fixed it by specifying the height of the Messages component. 
