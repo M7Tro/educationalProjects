@@ -1,6 +1,6 @@
 export default function Message () {
     return (
-        <div className="chat chat-end w-full">
+        <div className="chat chat-end w-full mr-10">
             <div className="chat-image avatar h-fit">
                 <div className="w-10 rounded-full">
                     <img

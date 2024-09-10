@@ -322,3 +322,16 @@ The scrollbar that appears by default as a result of setting "overflow-auto" is 
 I will now try to implement the MessageContainer.
 
 I encountered a challenge with the Message and Messages compnents. Message was too big for some reason and different Message components overlapped each other. I fixed it by setting the icon's height to fit. The overflow-auto property of Messages did not work after that. I fixed it by specifying the height of the Messages component. 
+
+Now let's create the MessageInput component. 
+
+It will have a parent form. Inside is a div that has input and button with a send icon. 
+
+I will now try to add the header and the bottom input field. 
+
+I will need to read bout this ::-webkit-... css stuff later.
+
+I have a problem. I can't manage to put the input field at the bottom of the window. Margin top-auto does not work. Position relative does not work. 
+
+I found out why. I set fixed height on the parent element and the form could not go beyond it. I found it out by using the elements tab in dev console. 
+
