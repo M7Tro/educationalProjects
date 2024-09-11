@@ -344,3 +344,29 @@ Now, let's add a componen for display of message "Select a chat to start messagi
 
 We can do it with a component inside MessageContainer.jsx. Just define and use a function that is conditionally swapped with contents of the MessageContainer if no chat is selected. 
 
+We will now proceed to work on the functionality of frontend. We want to make it communicate with the backend. 
+
+First, let's add some routing with react-router-dom. 
+
+Install the package with npm. Go into main.jsx and wrap the App into the BrowserRouter component. Wrapping the BrowserRouter lets us use the package's components inside App.jsx.
+
+Inside App.jsx, we add the Routes component. Within the Routes component, we use the Route components. Each corresponde to an element displaeted on a certain path. 
+
+We want Route components for the Home, Signup and Login pages. 
+
+Add a link to don't have an account that leads to signup page. And similar link to login page if you have account. 
+
+
+Now let's add the signup functionality. 
+
+We need to set up a state that tracks the user input. 
+
+Create a handleSubmit function.
+
+I am not sure how to track input from the GenderBox. It is a separate component. Do we pass the state as a prop that it can edit? 
+
+Yes. In the tutorial, author creates and passes a callback function as a prop. And he also passes the input state as a prop too: so that the GenderBox component shows which gender is selected. 
+
+I got some eslint prop validation error. It is solved in the tutorial by adding some settings to the eslint.config.js: "react/prop-types":"off". 
+
+Next step is to make actually write code for signing up the user. While we could define the functionality in Signup.jsx, a custom hook will be created.
