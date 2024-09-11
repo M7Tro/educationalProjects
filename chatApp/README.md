@@ -329,9 +329,18 @@ It will have a parent form. Inside is a div that has input and button with a sen
 
 I will now try to add the header and the bottom input field. 
 
-I will need to read bout this ::-webkit-... css stuff later.
+I need to read bout this ::-webkit-... css stuff.
+
+:: denotes a pseudo-element. The essence of a pseudo-element is that we treat a part of some existing element (p, h1, div, etc.) like a separate element on its own. Imagine that we want to style the first line/letter of the p tag and treat it like an element on its own. That is why it is called a pseudo-element.
+
+The webkit part referse to the rendering engine used by Chrome, Safari and Opera. We use it because it lets us style the scrollbar. 
 
 I have a problem. I can't manage to put the input field at the bottom of the window. Margin top-auto does not work. Position relative does not work. 
 
 I found out why. I set fixed height on the parent element and the form could not go beyond it. I found it out by using the elements tab in dev console. 
+
+
+Now, let's add a componen for display of message "Select a chat to start messaging" at the start of website usage. 
+
+We can do it with a component inside MessageContainer.jsx. Just define and use a function that is conditionally swapped with contents of the MessageContainer if no chat is selected. 
 
