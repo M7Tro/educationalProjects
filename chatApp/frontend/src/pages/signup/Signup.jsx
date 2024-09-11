@@ -1,8 +1,10 @@
-import GenderBox from "./GenderBox"
-import { Link } from "react-router-dom"
-import { useState } from "react"
+import GenderBox from "./GenderBox";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useSignup } from "../../hooks/useSignup";
 
 export default function Signup () {
+    const {loading, signup} = useSignup();
     const [input, setInput] = useState({
         fullname: "",
         username: "",
@@ -10,9 +12,9 @@ export default function Signup () {
         confirmedPassword: "",
         gender: ""
     })
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("The input is:", input);
+        await signup(input);
     }
     const onCheckGenderBox = (gender) => {
         setInput({...input, gender: gender});
@@ -49,7 +51,7 @@ export default function Signup () {
                     <Link to='/login' className="text-xl hover:underline my-4">
                         Already have an account?
                     </Link>
-                    <button className="btn text-3xl text-white btn-outline m-3">Sign Up</button>
+                    <button disabled={loading} className="btn text-3xl text-white btn-outline m-3">Sign Up</button>
                 </form>
             </div>
         </div>

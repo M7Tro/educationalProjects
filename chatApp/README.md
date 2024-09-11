@@ -370,3 +370,28 @@ Yes. In the tutorial, author creates and passes a callback function as a prop. A
 I got some eslint prop validation error. It is solved in the tutorial by adding some settings to the eslint.config.js: "react/prop-types":"off". 
 
 Next step is to make actually write code for signing up the user. While we could define the functionality in Signup.jsx, a custom hook will be created.
+
+Create a folder called hooks. Create a file called useSignup.jsx. 
+
+The custom hook defines a loading state. An asynchronous function called signup that takes in the inputs. This function will later be called inside handleSubmit using await. 
+
+We  define and use a validation function called handleInputErrors() that takes in all the inputs and returns a boolean value. It checks if all the fields are not empty. In case of error, it raises a toast with error message using package called react hot toast. 
+
+It also checks if provided passwords match. 
+
+Add a try-catch-finally block that sends the fetch request or raises an error toast. In the finally section set the loading state to false (makes sense because request ends whether successful or not).
+
+The hook itself returns the loading state and the signup function. 
+
+You will probably get a CORS error if you try to send the request. To fix this, you go to the vite.config file and add a proxy field. 
+
+One of the common challenges I encounter while making websites is being lost when adding new features. It is hard to decide what to work on next and what does that mean to the rest of the code already written. 
+ 
+But I think I can overcome this by keeping the big picture in my head. I think I will always be slightly (or significantly) lost, but by keeping the big blurru picture of what I want to build I will probably make necessary adjustments sooner or later. 
+
+Right now, the goal is to sign up a user to the database using the signup form. 
+
+I made a mistake by returning loading state and signup function in round braces instead of {}. As a result, the signup function was undefined or something. 
+
+I had a problem setting up the vite proxy because I forgot to wrap the proxy {} part into server{} part inside vite.config.js 
+
