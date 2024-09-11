@@ -395,3 +395,20 @@ I made a mistake by returning loading state and signup function in round braces 
 
 I had a problem setting up the vite proxy because I forgot to wrap the proxy {} part into server{} part inside vite.config.js 
 
+Now, if the user is signed up/logged in, we do not want to show him the signup page. In order to determine whether the user is in the system, we will create a global context.
+
+Create a folder called context. In this tutorial, author uses createContext from react. I think that I will use Zustand, as it is the package recommended y frontend devs and I want to be more familiar with it. 
+
+The global state we create is authUser. The default value is derived from the local storage: useState(JSON.parse(localstorage.getItem("authUser")) || null). If the value is empty we use null.
+
+JSON.parse takes in a string value returned from the localstorage and turns it into an object. 
+
+The global context provider feeds the state and a method that lets you change the state. 
+
+Inside useSignup, we save the object returned from the backend that contains _id, username, fullname, profilePic and gender. 
+
+After we save the data in localstorage, we also update the globar authUser state. 
+
+Now, we go to App.jsx and get the authUser state. We want to tweak the routing. If authUser is not null, we should be navigated into the homepage using Navigate from react-router-dom: element={authUser ? <Navigate to='home'/> : <Signup/>}. Do similar stuff to Home and Login pages. 
+
+I got errors because I forget to specify name of data stored in localStorage. 

@@ -75,6 +75,7 @@ const signup = async (req, res) => {
         
 
     }catch(err){
+        console.log("error message:", err.message);
         res.status(500).json({error: err.message})
     }
 }
