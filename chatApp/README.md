@@ -412,3 +412,24 @@ After we save the data in localstorage, we also update the globar authUser state
 Now, we go to App.jsx and get the authUser state. We want to tweak the routing. If authUser is not null, we should be navigated into the homepage using Navigate from react-router-dom: element={authUser ? <Navigate to='home'/> : <Signup/>}. Do similar stuff to Home and Login pages. 
 
 I got errors because I forget to specify name of data stored in localStorage. 
+
+
+Next step is to add the logout functionality.
+
+We create a hook useLogout.js
+
+The hook has a loading state. It has an async function logout with a try-catch-finally block. 
+
+Basically, we need to send a fetch request to the server to delete the cookie containing the JWT. If the request is successful, we remove the chatUser state from localStorage and update the authUser state to null. Also add some toasts. 
+
+Lastly, we call the logout function using the Logout button component. If the logout request is loading, we show a loading spinner from daisyUI. 
+
+Had problems with making ternary operator thing in logout. You should wrap conditionally render shit in a stable parent div.
+
+
+
+I have a problem that I can't quite figure out. When you refreh the web page, it has some kind of problem reading the data from localStorage.
+
+I fixed it. The problem was that I was storing an object that contains user data and called json without converting it to actual json. When I used JSON.parse to retrieve it, it got error because of receiving an object instead of a string.
+
+I also need to fix color of the text in the input field. 

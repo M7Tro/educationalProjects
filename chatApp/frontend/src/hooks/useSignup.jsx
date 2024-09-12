@@ -21,7 +21,7 @@ export const  useSignup = () => {
                 throw new Error(json.error);
             }else{
                 toast.success("Registration successful");
-                localStorage.setItem("authUser", json);
+                localStorage.setItem("authUser", JSON.stringify(json));
                 setAuthUser(json);
             }
         }catch(err){
