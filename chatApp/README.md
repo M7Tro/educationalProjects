@@ -433,3 +433,9 @@ I have a problem that I can't quite figure out. When you refreh the web page, it
 I fixed it. The problem was that I was storing an object that contains user data and called json without converting it to actual json. When I used JSON.parse to retrieve it, it got error because of receiving an object instead of a string.
 
 I also need to fix color of the text in the input field. 
+
+
+Nice. fixed it all. I am genius (yesterday I felt the dumbest f*ck on the planet).
+
+I am going to try to do it myself. It is essentially same stuff. You add state to track inputs. You create a hook that returns asynchronous login function and a loading state. And perhas raise a toast on success/error. 
+
