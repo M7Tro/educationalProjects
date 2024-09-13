@@ -499,3 +499,16 @@ Note that you also must make sure that the selectedConversation state is erased 
 You can also add an unmounting cleanup function for clearing the selectedConversation state once the components are not displayed. 
 
 The unmounting function is a funciton that is returned by the useEffect hook: return ()=>{...}
+
+
+Next step is to make sure we can send messages. 
+
+We create a custom hook for sending messages useSendMessage 
+
+Essentially, we retrieve the selected conversation, and use its info to send a message. The receiver id is in request parameters, sender id is inside the cookie file and is enabled by backend middleware and the message itself is in request body. 
+
+We will also use the useSelectedConversation for the messages state.
+
+useSendMessage returns a sendMessage function that sends the message. 
+
+Remember that when you send messages, the conversations get updated.
