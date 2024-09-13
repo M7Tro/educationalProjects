@@ -439,3 +439,42 @@ Nice. fixed it all. I am genius (yesterday I felt the dumbest f*ck on the planet
 
 I am going to try to do it myself. It is essentially same stuff. You add state to track inputs. You create a hook that returns asynchronous login function and a loading state. And perhas raise a toast on success/error. 
 
+Next part is getting the users for the sidebar conversations. 
+
+The author in the video wants to use zustand to store conversations in a glbal state. 
+
+Create a file useConversation.js. 
+
+The hook stores selectedConversations and messages states. 
+
+We will use the hook for this state in Conversations.jsx
+
+We also create a custom hook useGetConversations.js 
+
+The hook useGetConversations has a loading state, a conversatins state.
+
+There is a useEffect hook that defines function getConversations. This function gets the conversations/users from endpoint 'api/users'.
+
+The hook returns the loading state and the conversations.
+
+
+
+I was able to fancily change the code on several lines simultaneously after selecting them while holding the option key. I feel the power now. 
+
+
+Let's get back to building the funcitonality of the website.  
+
+We create a zustand hook with a state for selected conversation and messages. 
+
+We also create a hook for fetching data on users from the api with endpoint "/api/users"
+
+We call the hook to get the conversations inside Conversations.jsx component. 
+
+The useGetConversations() returns a loading state and a conversations state. 
+
+It also has a useEffect() hook with empty [] that runs on every render. The useEffect() hoos sends the request to the API. Note that it is a GET request: we don't need to send anything. Even though the backend needs to know the specific user whose conversations we are getting, it can get it from the jwt cookie that contains the id of a logged in user. 
+
+The function used in the useEffect is asynchronous. We define it within useEffect to not have to pass it inside []. I don't understand why, but we don't need to pass setLoading and setConversations inside useEffect. 
+
+Once you get the conversations, you map them inside Conversations.jsx. 
+
