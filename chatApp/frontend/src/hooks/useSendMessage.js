@@ -6,7 +6,7 @@ import { useSelectedConversation } from '../context/useSelectedConversation';
 
 export const useSendMessage = () => {
     const [loading, setLoading] = useState(false);
-    const {setMessages} = useSelectedConversation();
+    const {messages, setMessages} = useSelectedConversation();
 
     //Function returned by the hook to send messages on click:
     const sendMessage = async (message, receiverId) => {
@@ -23,7 +23,7 @@ export const useSendMessage = () => {
             }else {
                 toast.success("Message sent!");
                 console.log("Json received:",json);
-                setMessages(json.messages);
+                setMessages([...messages, json]);
             }
         }catch(err){
             toast.error(err.message);

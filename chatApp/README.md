@@ -512,3 +512,8 @@ We will also use the useSelectedConversation for the messages state.
 useSendMessage returns a sendMessage function that sends the message. 
 
 Remember that when you send messages, the conversations get updated.
+
+
+After that, we create a hook for getting messages.
+
+Do not forget to include a useEffect so that getMessages is run whenever it is rendered.

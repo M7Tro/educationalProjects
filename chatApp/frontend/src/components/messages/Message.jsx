@@ -1,4 +1,4 @@
-export default function Message () {
+export default function Message ({message}) {
     return (
         <div className="chat chat-end w-full mr-10">
             <div className="chat-image avatar h-fit">
@@ -13,8 +13,8 @@ export default function Message () {
                 Anakin <time className="text-xs opacity-50">12:46</time>
             </div>
             
-            <div className="chat-bubble">I hate you!</div>
+            <div className="chat-bubble">{message.message}</div>
             <div className="chat-footer opacity-50">Seen at 12:46</div>
         </div>
     )
-}   
+}    
