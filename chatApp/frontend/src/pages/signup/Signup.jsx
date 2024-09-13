@@ -28,22 +28,22 @@ export default function Signup () {
                     <h1 className="text-4xl mb-3">ChatApp <span className="font-bold text-blue-400">Sign Up</span></h1>
                     
                     <label className="text-2xl w-4/5 text-left font-semibold my-4" >Full Name</label>
-                    <input type="text" className="input input-bordered w-3/4 text-black"
+                    <input type="text" className="bg-white input input-bordered w-3/4 text-black"
                         value={input.fullname} onChange={(e)=>{setInput({...input, fullname: e.target.value})}}
                     />
 
                     <label className="text-2xl w-4/5 text-left font-semibold my-4">Username</label>
-                    <input type="text" className="input input-bordered w-3/4 text-black" 
+                    <input type="text" className="bg-white input input-bordered w-3/4 text-black" 
                         value={input.username} onChange={(e)=>{setInput({...input, username: e.target.value})}}
                     />
 
                     <label className="text-2xl w-4/5 text-left font-semibold my-4">Password</label>
-                    <input type="password" className="input input-bordered w-3/4 text-black" 
+                    <input type="password" className="bg-white input input-bordered w-3/4 text-black" 
                         value={input.password} onChange={(e)=>{setInput({...input, password: e.target.value})}}
                     />
 
                     <label className="text-2xl w-4/5 text-left font-semibold my-4">Confirmed Password</label>
-                    <input type="password" className="input input-bordered w-3/4 text-black" 
+                    <input type="password" className="bg-white input input-bordered w-3/4 text-black" 
                         value={input.confirmedPassword} onChange={(e)=>{setInput({...input, confirmedPassword: e.target.value})}}
                     />
                     {/*Gender checkbox */}

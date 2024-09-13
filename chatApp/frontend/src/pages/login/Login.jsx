@@ -21,11 +21,11 @@ export default function Login () {
                 <form onSubmit={handleLogin} className="flex flex-col justify-evenly items-center p-4 h-full text-white">
                     <h1 className="text-4xl mb-3">ChatApp <span className="font-bold text-blue-400">Log In</span></h1>
                     <label className="text-2xl w-4/5 text-left font-semibold">Username</label>
-                    <input type="text" placeholder="Type here" className="input input-bordered w-3/4 text-black" 
+                    <input type="text" placeholder="Type here" className="bg-white input input-bordered w-3/4 text-black" 
                         value={input.username} onChange={(e)=>{setInput({...input, username:e.target.value})}}
                     />
                     <label className="text-2xl w-4/5 text-left font-semibold">Password</label>
-                    <input type="password" placeholder="Type here" className="input input-bordered w-3/4 text-black" 
+                    <input type="password" placeholder="Type here" className="bg-white input input-bordered w-3/4 text-black" 
                         value={input.password} onChange={(e)=>{setInput({...input, password: e.target.value})}}
                     />
                     <Link to='/signup' className="text-xl hover:underline">

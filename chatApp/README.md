@@ -478,3 +478,24 @@ The function used in the useEffect is asynchronous. We define it within useEffec
 
 Once you get the conversations, you map them inside Conversations.jsx. 
 
+The author decided to add an emoji for each conversation. At first I thought we would need to use an external API, but it is much more straightforward. He madea file inside utils folder called emoji.js
+
+It has a lot of emojis in "" quotes, stored in an array. The file exports a funtion that returns a random emojy by generating a random index with Math.floor and Math.random. 
+
+There is also a prop passed to a Conversation component called lastIdx that corresponds to the index of the last element in the array of conversations. It is used to remove the divider line bellow the conversation displayed at the bottom.
+
+I added the array that I copied from the internet. And I beatifully formatted it using "format selection" and choosing "Prettier". Amazing power. 
+
+Next step is to enable the user to select the conversation/chat. 
+
+We just need to use the useSelectedConversation hook we created with zustand inside every Conversation component.
+
+Now, when there is a selected conversation, we want to get the messages from the conversation and display them inside the MessageContainer. 
+
+import and use the selectedConversation state inside the MessageContainer.
+
+Note that you also must make sure that the selectedConversation state is erased when you LogOut.  
+
+You can also add an unmounting cleanup function for clearing the selectedConversation state once the components are not displayed. 
+
+The unmounting function is a funciton that is returned by the useEffect hook: return ()=>{...}
