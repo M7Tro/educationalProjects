@@ -555,5 +555,16 @@ The problem I encountered is that I couldn't set the scrollTop to scrollheight u
 
 I decided not to waste more time on this and see how the author implemented it. He uses a similar approach. He wraps each Message component in a div. Each div is referenced with lastMessageRef. Using useEffect, he calls lastMessageRef.current.scrollIntoView({behaviour: "smooth"}); And to avoid issues with timing of rendering, he wraps the scrollIntoView functionality into setTimeout with a 100 millisecond delay. The useEffect is triggered by changes in messages.
 
-ScrollIntroView literally scrolls an element into view. And we attach the ref to the last message at the bottom. 
+ScrollIntroView literally scrolls an element into view. And we attach the ref to the last message at the bottom. Specify the "behavior" to "smooth" to make scrolling animation more smooth. duh 
+
+Next step is to implement the search functionality. 
+
+One way I can think of doing it is creating a search query state that is passed both to SearchInput component and to Conversations. SearchInput modifies it. Conversations uses it to filter the conversations displayed. 
+
+I don't like the way he implemented search. YOu just type a name and if there is a match it selects the conversation, otherwise tells you it doesn't exist. I want the convesation sidebar to update with input and the user can scroll and select the conversation. That is what I will do.
+
+I will get rid of the search button. Make a global state with zustand that is updated in search input and is used for filtering in conversations. Don't forget to convert strings to lower case. 
+
+
+Trying to implement my own thing, I had a problem with layout. I was trying to set the Sidebar parent div use grid rows but it did not do anyting. Until I set the 'grid-row' property. I just thought that tailwind authomatically adds display:grid if you use something like grid-row-3. Whatever. 
 

@@ -1,12 +1,20 @@
-import { FaSearch } from "react-icons/fa";
+import { useSearchInput } from '../../context/useSearchInput';
 
 export default function SearchInput () {
+    const {searchInput, setSearchInput} = useSearchInput();
+    const handleSearch = (e) => {
+        e.preventDefault();
+    }
+
     return (
-        <form className="flex align-center gap-4 mt-2 ml-2">
-            <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
-            <button className="btn btn-xs sm:btn-sm md:btn-md">
-                <FaSearch className="text-blue-500"/>
-            </button>
-        </form>
+        <div className='h-1/10'>
+            <form onSubmit={handleSearch} className="flex align-center gap-4 mt-2 ml-2">
+                <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" 
+                    value={searchInput} onChange={(e) => { setSearchInput(e.target.value) }}
+                />
+            </form>      
+            <div className="w-full py-1 border-b-2 border-b-gray-200 border-opacity-30"></div>  
+        </div>
+
     )
 }

@@ -11,7 +11,7 @@ export default function Messages () {
     useEffect(()=>{
         setTimeout(()=>{
             if(lastMessageRef.current){
-                lastMessageRef.current.scrollIntoView({behaviour: "smooth"});
+                lastMessageRef.current.scrollIntoView({behavior: "smooth"});
             }
         }, 100)
     }, [selectedConversation])
