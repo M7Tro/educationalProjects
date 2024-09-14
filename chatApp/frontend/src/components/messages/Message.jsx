@@ -1,4 +1,5 @@
-import { useAuthUser } from "../../context/authUser"
+import { useAuthUser } from "../../context/authUser";
+import { extractTime } from "../../utils/extractTime";
 
 export default function Message ({message, senderId, createdAt}) {
     const {authUser} = useAuthUser();
@@ -14,11 +15,10 @@ export default function Message ({message, senderId, createdAt}) {
             </div>
 
             <div className="chat-header">
-                Anakin <time className="text-xs opacity-50">12:46</time>
+                Anakin <time className="text-xs opacity-50">{extractTime(createdAt)}</time>
             </div>
             
             <div className={`chat-bubble ${(senderId === authUser._id) ? "chat-bubble-info" : ""}`}>{message}</div>
-            <div className="chat-footer opacity-50">Seen at 12:46</div>
         </div>
     )
 }    

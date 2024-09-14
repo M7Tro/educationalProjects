@@ -536,3 +536,7 @@ He uses an interesting way of mapping those skeletons. The goal is to create 3 s
 I don't want to include this. I think that a simple loading wheel is better. 
 
 The part that I did not implement is checking whether the message is from us or from user. I guess I made a mistake by only sending the message and the createdAt fields from backend. I will also send the senderId. Anythign that is sent from us will correspond to authUser global context and that way we can apply styles for positioning messages left and right. Gonna fix the backend, and then implement it in Message component. 
+
+To get proper time codes from the createdAt prop returned by mongoose, we will create a function extractTime 
+
+The function is in file extractTime.js inside utils folder. It creates a Date object, get data from it and adds padding of zeros if necessary using padStart.
