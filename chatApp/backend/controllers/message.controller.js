@@ -37,7 +37,7 @@ export const getMessages = async (req, res) => {
         const conversation = await Conversation.findOne({participants:{$all:[senderId, receiverId]}})
             .populate("messages");
         if(!conversation) return res.status(200).json({empty: "Conversation is empty and has no messages"});
-        const messages = conversation.messages.map(({createdAt, message, ...rest}) => ({createdAt, message}))
+        const messages = conversation.messages.map(({createdAt, message, senderId, ...rest}) => ({createdAt, senderId, message}))
         res.status(200).json(messages);
     }catch(err){
         res.status(400).json({error: err.message});

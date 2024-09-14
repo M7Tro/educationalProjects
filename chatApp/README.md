@@ -517,3 +517,22 @@ Remember that when you send messages, the conversations get updated.
 After that, we create a hook for getting messages.
 
 Do not forget to include a useEffect so that getMessages is run whenever it is rendered.
+
+
+I have implemented the nest important steps by myself. Because a friend of mine told me that it is better to make something less perfect but figure it out yourself. The messages are now all displayed. And if you send one, it will immediately be displayed inside the MessageContainer. 
+
+I will now watch how it is implemented in the tutorial. My approach was quite messy. And I added some additions (changed format of data send by backend for example).
+
+?. is called the optional chaining operator. If the property you access like this is evaluated to null/undefined, accessing it with ?. will not result in error. 
+
+In the tutorial, instead of showing a loading circle animation like I did, author displays a 'skeleton' of notifications. 
+
+He creates a folder called "skeletons" inside components and a file skeleton.jsx 
+
+We consume this component inside Messages.jsx 
+
+He uses an interesting way of mapping those skeletons. The goal is to create 3 skeletons. He uses a map function that is applied like this: [...Array(3)].map((_, idx)=>(<Skeleton key = {idx}/>))
+
+I don't want to include this. I think that a simple loading wheel is better. 
+
+The part that I did not implement is checking whether the message is from us or from user. I guess I made a mistake by only sending the message and the createdAt fields from backend. I will also send the senderId. Anythign that is sent from us will correspond to authUser global context and that way we can apply styles for positioning messages left and right. Gonna fix the backend, and then implement it in Message component. 
