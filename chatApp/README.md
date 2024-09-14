@@ -540,3 +540,20 @@ The part that I did not implement is checking whether the message is from us or 
 To get proper time codes from the createdAt prop returned by mongoose, we will create a function extractTime 
 
 The function is in file extractTime.js inside utils folder. It creates a Date object, get data from it and adds padding of zeros if necessary using padStart.
+
+Now I am trying to make sure that the message section is scrolled to the bottom. But I don't know how to do it. The author starts explaning it but I want to implement it myself first. I found an article about setting the scroll position using React. It implements useRef and useState hooks for this. What is useRef? 
+
+useRef is like useState, but the difference is that it does not trigger a re-render of components. And the ref value is not used inthe return () body of a component. To access and mutate values of a state from useRef, you use .current property. useRef lets you update/chagne/get values instantly without re-render. useRef doesn't even trigger a re-render in the first place. If you try to use and change a useRef value inside the return () body of a component, the change will not even be reflected (but the value will change). 
+
+You create a useRef hook like this: const newHook = useRef(0); And then it returns {current: 0};
+
+useRef provides a way for developers to interact directly with DOM nodes, outside of React's management of the virtual DOM. React descrbes this as 'escape hatch'. We can use the "ref" attribute of React elements to set the "current" property to be the actual DOM node element is rendered to. That way we can use the reference for old-fashioned DOM manipulation adding event listeners. 
+
+Essentially, we use the useRef to get acceess to DOM manipulation of the Messages component. 
+
+The problem I encountered is that I couldn't set the scrollTop to scrollheight using useEffect because all the messages were not rendered yet. I eventually tried useLayoutEffect hook that works after DOM elements are mounted. It didn't help.
+
+I decided not to waste more time on this and see how the author implemented it. He uses a similar approach. He wraps each Message component in a div. Each div is referenced with lastMessageRef. Using useEffect, he calls lastMessageRef.current.scrollIntoView({behaviour: "smooth"}); And to avoid issues with timing of rendering, he wraps the scrollIntoView functionality into setTimeout with a 100 millisecond delay. The useEffect is triggered by changes in messages.
+
+ScrollIntroView literally scrolls an element into view. And we attach the ref to the last message at the bottom. 
+

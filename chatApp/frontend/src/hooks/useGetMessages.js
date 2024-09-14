@@ -19,7 +19,7 @@ export const useGetMessages = () => {
                     setMessages([]);
                 } 
                 else{
-                    console.log("Json:", json);
+                    //console.log("Json:", json);
                     setMessages(json);
                 }
             }catch(err){
