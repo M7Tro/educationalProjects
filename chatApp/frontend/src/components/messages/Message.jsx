@@ -2,7 +2,7 @@ import { useAuthUser } from "../../context/authUser"
 
 export default function Message ({message, senderId, createdAt}) {
     const {authUser} = useAuthUser();
-    console.log("Auth user:", authUser._id, "senderId:", senderId);
+    //console.log("Auth user:", authUser._id, "senderId:", senderId);
     return (
         <div className={`chat ${(senderId === authUser._id) ? "chat-end" : "pl-10 chat-start"} w-full mr-10`}>
             <div className="chat-image avatar h-fit">
@@ -17,7 +17,7 @@ export default function Message ({message, senderId, createdAt}) {
                 Anakin <time className="text-xs opacity-50">12:46</time>
             </div>
             
-            <div className="chat-bubble">{message}</div>
+            <div className={`chat-bubble ${(senderId === authUser._id) ? "chat-bubble-info" : ""}`}>{message}</div>
             <div className="chat-footer opacity-50">Seen at 12:46</div>
         </div>
     )
