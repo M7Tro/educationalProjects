@@ -7,13 +7,14 @@ import authRouter from './routes/auth.router.js';
 import messageRouter from './routes/message.router.js';
 import usersRouter from './routes/user.router.js';
 
+import {app, server} from './socket/socket.js';
+
 dotenv.config();
 
-const app = express();
 const PORT = process.env.PORT || 3000;
 mongoose.connect(process.env.MONGO_URI)
     .then(()=>{
-        app.listen(PORT, ()=>{console.log("Listening on port", PORT)})
+        server.listen(PORT, ()=>{console.log("Listening on port", PORT)})
     })
 
 //Middleware: (json parser, cookie parser, logger)

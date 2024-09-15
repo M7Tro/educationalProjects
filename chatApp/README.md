@@ -566,5 +566,61 @@ I don't like the way he implemented search. YOu just type a name and if there is
 I will get rid of the search button. Make a global state with zustand that is updated in search input and is used for filtering in conversations. Don't forget to convert strings to lower case. 
 
 
-Trying to implement my own thing, I had a problem with layout. I was trying to set the Sidebar parent div use grid rows but it did not do anyting. Until I set the 'grid-row' property. I just thought that tailwind authomatically adds display:grid if you use something like grid-row-3. Whatever. 
+Trying to implement my own thing, I had a problem with layout. I was trying to set the Sidebar parent div use grid rows but it did not do anyting. Until I set the 'grid-row' property. I just thought that tailwind authomatically adds display:grid if you use something like grid-row-3. Whatever. Eventually I just set a relative height for the elements of the sidebar: it was easier because I did not need to change hegiht of grid rows.
+
+Next step is to implement the socket.io. 
+
+First, let's do some research on what socket.io is for. 
+
+Web sockets let you establish a two-way  connection between client and server. Good for real-time data.
+
+The first step is client sends an HTTP request to the server to establish connection. If server agrees, it sends a 101 "Switching Protocols" response. At this point, the handshake is complete. The TCP/IP connection is left open, allowing bi-directional messages to pass between two parties with low latency. 
+
+The connection will stay open until one of the parties drops off and the TCP resources can be re-allocated. 
+
+It is often referred to as a "full-dublex" connection, noting the similarity of how phone calls work. 
+
+Web sockets are like using a walkie-takie instead of sending each other mail. 
+
+Web sockets use a specific "WebSocket Protocol", build on top of the Transmission Protocol (TCP), to establish connection. Web Sockets also use a specific format of messages called "websocket format".
+
+What is the architecture like?
+
+Currently, we have an express server that serves requests and interacts with a database. After someone sends a message, receiver has to refresh the page to see updates. 
+
+To establish a real-time connection, we will add a socket server on top of the express server. 
+
+This way, we can immediately send new saved messages to the receiver without waiting for a request from him. 
+
+This is possible with the socket.io library 
+
+How does the author of the tutorial implement it?
+
+The socket server will be inside of the backend folder. Create a folder 'socket' and a file 'socket.js'. 
+
+Make sure that socket.io is installed as a npm package in the root directory. 
+
+We import {Server} from socket.io. 
+
+We import the "http" package (a standard module for nodejs).
+
+We also import the express package.
+
+We will delete the declaration/instantiaion of the app express server in server.js, and create an app inside the socket.js instead. We will then export this app into server.js.
+
+We create a server with http.createServer(app);
+
+And then we write const io = new Server(server);
+
+At this point, we have created an express server and added a socket server on top of it. 
+
+Then we export the app, io and server. 
+
+To avoid CORS errors, go back to new Server(server) and an object cors: {origin: ["http://localhost:3000"], methods: ["GET", "POST"]}
+
+We can listen to connection event with io.on("connection", (socket) => {})
+
+The 'socket'  object inside the callback is the connected user. It has id and different properties. Within the callback,  you can listen to "disconnect" event with socket.on("disconnect", () => {})
+
+Then you go back into server.js, import the app and server. You need to change app.listen to server.listen. That's it for now. 
 
