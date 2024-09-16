@@ -11,13 +11,13 @@ export function useLogin () {
             if(!login || !password){
                 throw new Error("Please provide all the fields");
             }
-            console.log("Receied inside useLogin:", username, password)
             const res = await fetch("/api/auth/login", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({username, password})
             })
             const json = await res.json();
+            //console.log("json received:", json);
 
             if(!res.ok){
                 throw new Error (json.error);
@@ -25,6 +25,7 @@ export function useLogin () {
                 //Update the global state:
                 setAuthUser(json);
                 //Update the local storage: 
+                //console.log("Local storage was reached:", json);
                 localStorage.setItem("authUser", JSON.stringify(json));
 
                 toast.success(`Login successful: ${username}`);

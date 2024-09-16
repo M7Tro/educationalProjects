@@ -23,10 +23,10 @@ export const sendMessage = async (req,res) => {
         }
         await Promise.all([conversation.save(), newMessage.save()]);
         
-        res.status(200).json({createdAt: newMessage.createdAt, message: newMessage.message, senderId: newMessage.senderId});
+        return res.status(200).json({createdAt: newMessage.createdAt, message: newMessage.message, senderId: newMessage.senderId});
     }catch(err){
         console.log("Error during sendMessage:", err.message);
-        res.status(500).json({error: err.message});
+        return res.status(500).json({error: err.message});
     }
 } 
 
@@ -38,8 +38,8 @@ export const getMessages = async (req, res) => {
             .populate("messages");
         if(!conversation) return res.status(200).json({empty: "Conversation is empty and has no messages"});
         const messages = conversation.messages.map(({createdAt, message, senderId, ...rest}) => ({createdAt, senderId, message}))
-        res.status(200).json(messages);
+        return res.status(200).json(messages);
     }catch(err){
-        res.status(400).json({error: err.message});
+        return res.status(400).json({error: err.message});
     }
 }

@@ -624,3 +624,77 @@ The 'socket'  object inside the callback is the connected user. It has id and di
 
 Then you go back into server.js, import the app and server. You need to change app.listen to server.listen. That's it for now. 
 
+After modifying the backend, we should also modify the frontend: all the requests are not working anymore after the backend was changed. 
+
+Inside the Context folder, create SocketContext.jsx file.
+
+The goal is to create a state calle 'socket' with  a setSocket function to change it. 
+
+The socket stores the connection. 
+
+Also create a state called onlineUsers. 
+
+Install a package into frontend called socket.io-client 
+
+Add a useEffect hook that checks if there is a connected user with authUser.
+
+If yes, we establish a connection: const socket = io("http://localhost:3000", {...})
+
+io is a method we get from 'socket.io-client' 
+
+You set the socket state to this connection: setSocket(socket);
+
+Add a cleanup function so that socket is closed when component is unmounted: return () => {socket.close()}
+
+If there is no authenticated user, we close the connection:
+    else { if(socket) {socket.close(); setSocket(null);} } 
+
+
+I am now trying to  create a socket context. I tried to do it with zustand but I then found out that it would be easier to implement everything using the createContext from 'react' as in tutorial. For example, I am not sure how to integrate useEffect insize the zustand hook. It would imply using it locally inside the file that deconstructs the values from the hook. 
+
+I installed the socket.io-client npm package into the frontend folder.
+
+socket.io-client is used for communication to the socket set up on the backend server. 
+
+More specifically, we use the 'io' method from 'socket.io-client' to establish a connection. 
+
+After adding the changes to backend and frontend, I am supposed to see the socket connection. That is how it is in the tutorial.
+
+For me, both backend and frotnend crashed. Gonna spend some time fixing it. For now I will comment all the frontend code in SocketContext and try to make the backend work. 
+
+I get this error:  Cannot set headers after they are sent to the client
+
+I will try to add return statements for every response statement that I have to avoid this error. I also removed the next() statement from the middleware and added an else statement.
+
+NICE!
+
+Whe frontend doesn't show shit but now I at least see requests on the backend console. 
+
+Somehow, it all seems to work: I see the messages from me and other users. And I can send new messages. 
+
+I have deleted all the collections for users, conversations and messages to rewrite them for better testing. 
+
+Now, I will get the SocketContext back.
+
+At this point, I expect to see a message that a connection was established on the backend console. But I don't see it.
+
+Trying to figure out why nothing happens, I noticed that nothing is stored in the local storage after I login.
+
+I am trying to debug useLogin but it is as if the code I add does not change anything. The console.log() statements that are definitiely supposed to work are not doing anything, while I keep getting output from statements that are no longer there. 
+
+I deleted the useEffect part  of socketProvider inside SocketContext and it now works: "the local storage was reached." 
+
+The problem then is in the socket shit. 
+
+I rewrote the code using the tutorial. Now I get a different error: Access-Control-Allow-Origin.
+
+In the terminal, I get the http proxy error from vite. It means that website does not provide a proper response. 
+
+I think I know why. Inside the set up of the server, I specified the cors object with origin as 'http://localhost:3000'. But I forgot that the frontend is run from port 5173. 
+
+I have tried adding this to middleware in server.js:     res.header("Access-Control-Allow-Origin", "http://localhost:5173"); 
+
+
+I think I need to read more about CORS. Because I don't really understand how it works, yet this problem occurs quite often.
+
+CORS stands for cross origin resource sharing. It is a mechanism that allows a website on one url to request data from a different url. 

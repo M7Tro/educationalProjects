@@ -3,10 +3,10 @@ import jwt from 'jsonwebtoken';
 export const protectRoute = (req, res, next) => {
     const token = req.cookies.jwt;
     if(!token){
-        res.status(400).json({error: "User is not authenticated"});
-        next();
+        return res.status(400).json({error: "User is not authenticated"});
+    } else {
+        const decoded = jwt.verify(token, process.env.SECRET);
+        req.userId = decoded.userId;
+        next();        
     }
-    const decoded = jwt.verify(token, process.env.SECRET);
-    req.userId = decoded.userId;
-    next();
 } 

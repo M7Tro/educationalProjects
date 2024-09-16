@@ -12,7 +12,7 @@ const login = async (req, res) => {
             return res.status(400).json({error: "Email or password is incorrect"});
         }else{
             jwtCookie(user._id, res);
-            res.status(200).json({
+            return res.status(200).json({
                 username: user.username,
                 fullname: user.fullname,
                 gender: user.gender,
@@ -21,7 +21,7 @@ const login = async (req, res) => {
             })            
         }   
     }catch(err){
-        res.status(500).json({error: err.message})
+        return res.status(500).json({error: err.message})
     }   
 }
 
@@ -63,7 +63,7 @@ const signup = async (req, res) => {
         if(newUser){
             await newUser.save(); 
             jwtCookie(newUser._id, res);
-            res.status(200).json({
+            return res.status(200).json({
                 _id: newUser._id,
                 fullname: newUser.fullname,
                 username: newUser.username,
@@ -71,13 +71,13 @@ const signup = async (req, res) => {
                 gender: newUser.gender
             })    
         }else{
-            res.status(400).json({error:"Invalid user data"});
+            return res.status(400).json({error:"Invalid user data"});
         }
         
 
     }catch(err){
         console.log("error message:", err.message);
-        res.status(500).json({error: err.message})
+        return res.status(500).json({error: err.message})
     }
 }
 
