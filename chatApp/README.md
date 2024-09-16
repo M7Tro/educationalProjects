@@ -698,3 +698,16 @@ I have tried adding this to middleware in server.js:     res.header("Access-Cont
 I think I need to read more about CORS. Because I don't really understand how it works, yet this problem occurs quite often.
 
 CORS stands for cross origin resource sharing. It is a mechanism that allows a website on one url to request data from a different url. 
+
+The browser implements the same origin policy as part of its security model. It lets websites get images and data from its own url, but blocks anything from a different url. When the browser makes a request, it adds an origin header to the message. If that request goes to a server with the same origin, there is no problem. 
+
+But if request goes to a server with different origin (like localhost:3000 goes to localhost:4000), then it is known as a 'cross-origin request'. When sending a response, server will add a header "Access-Controll-Allow-Origin". Its value must match the 'origin' header on the request. Or it can be a wildcard "*" which allows any url to make the request. If there is a mismatch, the browser will prevent the response data from being shared with the client. This results in an error being displated in the browser. 
+
+The soluton to the CORS error must be implemented on the server. If you have access to the serevr, just make sure that it responds with a proper header. Requests like PUT, PATCH and DELETE will need to be preflighted as they have non-standard headers. 
+
+Even after adding     res.set('Access-Control-Allow-Origin','*');   , nothing changed.
+
+Perhaps its not a CORS error. After all, I was able to send requests before. 
+
+It is probably more related to sockets. 
+
