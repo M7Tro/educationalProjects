@@ -5,9 +5,8 @@ import {Server} from 'socket.io';
 const app = express(); //creating an express app
 const httpServer = http.createServer(app); //creating an http server using the express app as request handler. 
 const io = new Server(httpServer, {
-    origins: "http://localhost:*",
     cors: {
-        origin: ["http://localhost:5713", "http://loclhost:3000"],
+        origin: "*",
         methods: ["GET", "POST"],
         credentials: true   
     }

@@ -711,3 +711,8 @@ Perhaps its not a CORS error. After all, I was able to send requests before.
 
 It is probably more related to sockets. 
 
+YEEESSS!
+
+I set the origin to "*" inside the cors object when creating the io inside socket.js
+
+And now it seems to work. Now I see the message about socket connection. Interesting. Why would it not work before? It still doesn't work if you set it to "http://localhost:5173" or "http://localhost:3000". But it does work with "*". 
