@@ -778,3 +778,9 @@ It uses keyframes in index.css. Inside useListenMessages, we write newMessage.sh
 And inside the Message.jsx component, we add cosnt shakeClass = message.shouldShake ? "shake" : "";
 
 And then we add this shakeClass inside className of the bubble. 
+
+Lastly, we add a notification sound on new message.
+
+Go to assets, add sounds folder and a notification.mp3 file inside.
+
+Go to useListenMessages. Create const sound = new Audio(notificationSound);
