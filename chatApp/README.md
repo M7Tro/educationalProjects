@@ -716,3 +716,25 @@ YEEESSS!
 I set the origin to "*" inside the cors object when creating the io inside socket.js
 
 And now it seems to work. Now I see the message about socket connection. Interesting. Why would it not work before? It still doesn't work if you set it to "http://localhost:5173" or "http://localhost:3000". But it does work with "*". 
+
+
+Now, let's continue wih functionality. 
+
+How are we going to get user's status? Got to socket.js, create an object called userSocketMap with key-value pairs usreId: socketId.
+
+We will send the user id together with socket connection. Go to frontend, to const socket = io() and add query: {userId: authUser._id}.
+
+On the backend, retreive the userId with const userId = socket.handshake.query.userId
+
+If the userIid is not undefined, we set it inside the userSocketMap with userSocketMap[userId] = socket.id
+
+Since we have updated this map, we want to send an event to all connected clients with io.emit("getOnlineUsers", Object.keys(userSocketMap)). io.emit() sends events to all connected clients. 
+
+With this added code, whenever a user connects, he will get data on who is online and who is offline. 
+
+And when the user disconnects, we want to delete his userId:socketId pair from the userSocketMap. We do it inside "disconnect" handler with delete userSocketMap[userId];  After deletion, we similarly emit an event on this: emit("getOnlineUsers", userSocketMap).
+
+The event name 'getOnlineUsers' is now used on the client. Inside SocketContext.jsx, once a socket is established, we set up an event listener: socket.on("getOnlineUsers", (users) => {setOnlineUsers(users)})
+
+We store the userSockerMap inside the onlineUsers state. 
+

@@ -11,9 +11,17 @@ export const SocketContextProvider = ({children}) => {
     useEffect(()=>{
         //console.log("Socket context works");
         if(authUser){//if user is authenticated 
-            const socket = io("http://localhost:3000");
-            setSocket(socket);
-            return () => {socket.close()} //cleanup function on unmount
+            const newSocket = io("http://localhost:3000", {
+                query: {
+                    userId: authUser._id
+                }
+            });
+            setSocket(newSocket);
+            newSocket.on("getOnlineUsers", (users) => {
+                setOnlineUsers(users);
+                console.log("Users:", users);
+            })
+            return () => {newSocket.close()} //cleanup function on unmount
         } else {//if user is not authenticated
             if(socket){//if there is an existing socket connection, we want to close it
                 socket.close();

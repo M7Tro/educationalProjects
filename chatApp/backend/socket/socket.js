@@ -12,9 +12,17 @@ const io = new Server(httpServer, {
     }
 }) //Creates a socket.io server using the http as underlying protocol
 
+const userSocketMap = {};
+
 io.on("connection", (socket) => { //Listen for connections to the io socket server. 
-    console.log("Socket connection:", socket.id);
+    const userId = socket.handshake.query.userId;
+    if(userId != undefined){
+        userSocketMap[userId] = socket.id;
+        io.emit("getOnlineUsers", userSocketMap);
+    }
     socket.on("disconnect", (req, res) => {//Listen for disconnections from the socket io server
+        delete userSocketMap[userId];
+        io.emit("getOnlineUsers", userSocketMap);
     })
 })
 
