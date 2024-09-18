@@ -1,5 +1,7 @@
 import Conversation from '../models/Conversation.model.js';
 import Message from '../models/Message.model.js';
+import { getReceiverSocketId } from '../socket/socket.js';
+import { io } from '../socket/socket.js';
 
 export const sendMessage = async (req,res) => {
     try{
@@ -20,9 +22,18 @@ export const sendMessage = async (req,res) => {
         })
         if(newMessage){
             conversation.messages.push(newMessage._id);
-        }
+        }        
+
         await Promise.all([conversation.save(), newMessage.save()]);
-        
+
+        //Socket functionality:
+        const receiverSocketId = getReceiverSocketId(senderId);
+        //If the user is online, we:
+        if(receiverSocketId){
+            //Instead of io.emit, we use the specific io.to()
+            io.to(receiverSocketId).emit("newMessage", newMessage);
+        }
+    
         return res.status(200).json({createdAt: newMessage.createdAt, message: newMessage.message, senderId: newMessage.senderId});
     }catch(err){
         console.log("Error during sendMessage:", err.message);

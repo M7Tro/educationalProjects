@@ -745,3 +745,11 @@ And to actually see the online status, we go to the conversation component and g
 We check if onlineUsers includes the _id of the conversation. If the user is online, we add the "online" class to the avatar. Otherwise, its '' empty. 
 
 Note that the onlineUsers property should be accessed with useEffet because it is initially undefined and will give error.
+
+Last thing to do is the real-time messages functionality.
+
+Go to backend. Inside socket.js, we define and export a method getReceiverSocketId. It takes in a receiverId and gives you a socketId of the user from the userSocketMap. 
+
+Now, go to messageController. We get the receiverSocketId and send an event to the specific user with io.to(receiverSocketId).emit()
+
+The event is "newMessage".

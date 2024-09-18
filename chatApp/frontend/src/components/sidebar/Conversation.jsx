@@ -9,7 +9,7 @@ export default function Conversation ({conversation, currIdx, lastIdx, emoji}) {
 
     useEffect(()=>{
         setIsOnline(onlineUsers?.includes(conversation._id) || false);
-    },[])
+    },[conversation, onlineUsers])
     
     let isSelected = selectedConversation?._id === conversation._id;
     const handleSelection = () => {
