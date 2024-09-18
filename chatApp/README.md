@@ -728,7 +728,7 @@ On the backend, retreive the userId with const userId = socket.handshake.query.u
 
 If the userIid is not undefined, we set it inside the userSocketMap with userSocketMap[userId] = socket.id
 
-Since we have updated this map, we want to send an event to all connected clients with io.emit("getOnlineUsers", Object.keys(userSocketMap)). io.emit() sends events to all connected clients. 
+Since we have updated this map, we want to send an event to all connected clients with io.emit("getOnlineUsers", Object.keys(userSocketMap)). Notice that we only send keys: we don't want to share socket id's. io.emit() sends events to all connected clients. 
 
 With this added code, whenever a user connects, he will get data on who is online and who is offline. 
 
@@ -738,3 +738,10 @@ The event name 'getOnlineUsers' is now used on the client. Inside SocketContext.
 
 We store the userSockerMap inside the onlineUsers state. 
 
+After that, we set up a hook that lets us consume the SocketContext. 
+
+And to actually see the online status, we go to the conversation component and get the onlineUsers from the hook we have just created. 
+
+We check if onlineUsers includes the _id of the conversation. If the user is online, we add the "online" class to the avatar. Otherwise, its '' empty. 
+
+Note that the onlineUsers property should be accessed with useEffet because it is initially undefined and will give error.

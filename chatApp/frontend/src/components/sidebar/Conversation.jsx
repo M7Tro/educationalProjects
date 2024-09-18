@@ -1,8 +1,16 @@
 import { useSelectedConversation } from "../../context/useSelectedConversation";
+import {useSocketContext} from '../../context/useSocketContext';
+import { useEffect, useState } from "react";
 
 export default function Conversation ({conversation, currIdx, lastIdx, emoji}) {
     const {selectedConversation, setSelectedConversation} = useSelectedConversation();
+    const {onlineUsers} = useSocketContext();
+    const [isOnline, setIsOnline] = useState(false);
 
+    useEffect(()=>{
+        setIsOnline(onlineUsers?.includes(conversation._id) || false);
+    },[])
+    
     let isSelected = selectedConversation?._id === conversation._id;
     const handleSelection = () => {
         setSelectedConversation(conversation);
@@ -17,7 +25,7 @@ export default function Conversation ({conversation, currIdx, lastIdx, emoji}) {
                 onClick={handleSelection}
             >
 
-                <div className="avatar online border-4 rounded-full">
+                <div className={`avatar ${isOnline ? "online" : ""} border-4 rounded-full`}>
                     <div className="w-12 rounded-full">
                         <img src={conversation.profilePic} alt="user avatar" />
                     </div>

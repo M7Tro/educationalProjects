@@ -3,6 +3,8 @@ import { useAuthUser } from './authUser';
 import {io} from 'socket.io-client';
 
 export const SocketContext = createContext();
+
+
 export const SocketContextProvider = ({children}) => {
     const [socket, setSocket] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState(null);
@@ -19,7 +21,7 @@ export const SocketContextProvider = ({children}) => {
             setSocket(newSocket);
             newSocket.on("getOnlineUsers", (users) => {
                 setOnlineUsers(users);
-                console.log("Users:", users);
+                //console.log("Users:", users, onlineUsers);
             })
             return () => {newSocket.close()} //cleanup function on unmount
         } else {//if user is not authenticated
