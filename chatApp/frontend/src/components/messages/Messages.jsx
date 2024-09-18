@@ -2,11 +2,13 @@ import Message from "./Message";
 import { useGetMessages } from "../../hooks/useGetMessages";
 import { useSelectedConversation } from "../../context/useSelectedConversation";
 import {useRef, useEffect} from 'react';
+import { useListenMessages } from "../../hooks/useListenMessages";
 
 export default function Messages () {
     const {loading, messages} = useGetMessages();
     const {selectedConversation} = useSelectedConversation();
     const lastMessageRef = useRef(null);
+    useListenMessages(); //listens for incoming messages from the socket 
     
     useEffect(()=>{
         setTimeout(()=>{

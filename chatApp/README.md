@@ -753,3 +753,28 @@ Go to backend. Inside socket.js, we define and export a method getReceiverSocket
 Now, go to messageController. We get the receiverSocketId and send an event to the specific user with io.to(receiverSocketId).emit()
 
 The event is "newMessage".
+
+
+Next is we intercept those events on the frontend. We create a custom hook useListenMessages.js
+
+The point of the hook is to listen for the messages. First, get the socket state from the context. 
+
+Then get the messages and setMessages from the useSelectedConversation
+
+We use a useEffect. Inside, we listen for the 'newMessage' event with socket?.on. 
+
+We get the newMessage and then add is to the messages state. 
+
+There is a also a cleanup function returned by useEffect: return () => socket?.off("newMessage"); When the componetn umounts, we don't want to listen for new messages. 
+
+We then just call this hook inside Messages.
+
+Hoenstly, I can't see messages appearing without reload yet. I will get on that later.
+
+Now, we add a little shake animation for messages that are received.
+
+It uses keyframes in index.css. Inside useListenMessages, we write newMessage.shouldShake = true;
+
+And inside the Message.jsx component, we add cosnt shakeClass = message.shouldShake ? "shake" : "";
+
+And then we add this shakeClass inside className of the bubble. 

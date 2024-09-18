@@ -3,6 +3,7 @@ import { extractTime } from "../../utils/extractTime";
 
 export default function Message ({message, senderId, createdAt}) {
     const {authUser} = useAuthUser();
+    const shakeClass = message.shouldShake ? "shake" : '';
 
     //console.log("Auth user:", authUser._id, "senderId:", senderId);
     return (
@@ -15,7 +16,7 @@ export default function Message ({message, senderId, createdAt}) {
                 </div>
             </div>
             
-            <div className={`chat-bubble ${(senderId === authUser._id) ? "chat-bubble-info" : ""}`}>{message}</div>
+            <div className={`chat-bubble ${shakeClass} ${(senderId === authUser._id) ? "chat-bubble-info" : ""}`}>{message}</div>
 
             <div className="chat-footer">
                 <time className="text-xs opacity-50">{extractTime(createdAt)}</time>

@@ -21,7 +21,7 @@ export const SocketContextProvider = ({children}) => {
             setSocket(newSocket);
             newSocket.on("getOnlineUsers", (users) => {
                 setOnlineUsers(users);
-                //console.log("Users:", users, onlineUsers);
+                console.log("Users:", users);
             })
             return () => {newSocket.close()} //cleanup function on unmount
         } else {//if user is not authenticated
