@@ -1,5 +1,5 @@
 import { useSelectedConversation } from "../../context/useSelectedConversation";
-import {useSocketContext} from '../../context/useSocketContext';
+import { useSocketContext } from "../../hooks/useSocketContext";
 import { useEffect, useState } from "react";
 
 export default function Conversation ({conversation, currIdx, lastIdx, emoji}) {
