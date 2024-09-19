@@ -784,3 +784,19 @@ Lastly, we add a notification sound on new message.
 Go to assets, add sounds folder and a notification.mp3 file inside.
 
 Go to useListenMessages. Create const sound = new Audio(notificationSound);
+
+
+I have launched the website from two browsers: safari and chrome.
+
+I am able to see the green online status appear and disappear. Which is good.
+
+And I do receive notification bell on new messages.
+
+But I don't see the new message appearing. Why?
+
+There is a problem with receiving the newMessage object. 
+
+I get error "websocket is not connected".
+
+I am going to rewrite the last bits of code.
+

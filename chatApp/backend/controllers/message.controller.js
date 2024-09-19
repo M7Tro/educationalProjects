@@ -31,6 +31,7 @@ export const sendMessage = async (req,res) => {
         //If the user is online, we:
         if(receiverSocketId){
             //Instead of io.emit, we use the specific io.to()
+            //console.log("Sending the new message wit socket: ", newMessage);
             io.to(receiverSocketId).emit("newMessage", newMessage);
         }
     

@@ -8,11 +8,13 @@ export const useListenMessages = () => {
     const {messages, setMessages} = useSelectedConversation(); //this is used in the Message component 
 
     useEffect(()=>{
-        socket?.on("newMessage", (newMessage) => {
-            newMessage.shouldShake = true;
+        socket?.on("newMessage", () => {
+            console.log("new message socket listener works");
+            //newMessage.shouldShake = true;
             const sound = new Audio(notificationSound);
+            //console.log("New message received by the client using socket connection:", newMessage);
             sound.play();
-            setMessages([...messages, newMessage]);
+            //setMessages([...messages, newMessage]);
         })
 
         return () => socket?.off("newMessage")
