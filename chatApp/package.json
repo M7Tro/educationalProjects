@@ -4,7 +4,9 @@
   "description": "This is a project I made following the tutorial by \"As a Programmer\": https://youtu.be/HwCqsOis894?si=bh6gJSb5NEs22kEV",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon backend/server.js"
+    "dev": "nodemon backend/server.js",
+    "start": "node backend/server.js",
+    "build": "npm install  && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "type": "module",
   "keywords": [],

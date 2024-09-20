@@ -849,3 +849,16 @@ I see. I don't pass the whole message object: I use props. I need to pass should
 And I also implemented the scrollIntoView with useRef. From the first TRY!
 
 Let's add the bell notification. We import the audio into useListenMessages and create an Audio object. And play it. It WORKS!
+
+
+Finally, it is time to deploy. 
+
+First, we need to set up the backend file. We create the __dirname variable = path.resolve(). It gives us the absolute path to the root folder.
+
+After the routes, we add middleware that make static files available with app.use(express.static(path.join(__dirname, "/frontend/dist"))).
+
+We serve those files with: app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend", "dist", "index.hmtl"))
+})
+
+Then we go into packags.json and add a script: "start":  "node backend/server.js" and "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"

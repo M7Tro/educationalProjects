@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 import authRouter from './routes/auth.router.js';
 import messageRouter from './routes/message.router.js';
@@ -29,6 +30,13 @@ app.use((req, res, next)=>{
 app.use("/api/auth", authRouter);
 app.use("/api/messages", messageRouter);
 app.use("/api/users", usersRouter);
+
+//middleware for deployment:
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "frontend", "dist")));
+app.get("*", (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+})
 
 mongoose.connect(process.env.MONGO_URI)
     .then(()=>{
