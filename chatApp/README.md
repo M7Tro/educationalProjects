@@ -804,3 +804,28 @@ It was important to add the authUsers into [] of useEffect in SocketContextProvi
 
 The "disconnect" event that is read by socket.js on the backend is caused by socket.close(). socket.close() in turn is caused by logout: when we logout is done, authUser is deleted and socket.close() is called. 
 
+Now I will re-implement the newMessage functionality. 
+
+We define getReceiverSocketId that will then be used in the controller. The idea is that when sender sends a message, his message contains the receiver's id (user id) and this id is used to get the socket id (using getReceiverSocketId). This in turn is used to emit a "newMessage" action specifically to the receiver's socket. This way, the receiver will be able to react to a newMessage in real time with no refresh. 
+
+Next we need to catch this in our client. 
+
+We will create a custom hook for this. 
+
+The essence of the useListenMessages hook is that it has a useEffect that sets up a socket event listener for "newMessage" event and updates the "messages" inside the global context. The hook is called inside the Messages component.
+
+For some reason, I don't see anything happening. 
+
+The server does receive the receiver socket and new message. 
+
+I wrapped the socket inside a setTimeout to make sure its not a rendering issue. 
+
+The socket IS available inside useListenMessages body.
+
+I have noticed something strange. When you send a new message, the newMessage event is intercepted by the sender. Wtf?
+
+Somehow, I receive newMessage console log output for every user other than me. 
+
+I found that, somehow, the receiverSocketId is the socket id of the sender. So it is a backend error at the very least.
+
+I am a f**cing idit. I passed the senderId to the getReceiverSocketId. 

@@ -31,5 +31,5 @@ io.on("connection", (socket) => { //Listen for connections to the io socket serv
 export {app, io, httpServer};
 
 export const getReceiverSocketId = (receiverId) => {
-    return userSocketMap[receiverId]
-}
+    return userSocketMap[receiverId];
+}    

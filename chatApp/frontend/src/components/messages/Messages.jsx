@@ -8,8 +8,10 @@ export default function Messages () {
     const {loading, messages} = useGetMessages();
     const {selectedConversation} = useSelectedConversation();
     const lastMessageRef = useRef(null);
-    useListenMessages(); //listens for incoming messages from the socket 
     
+    //Listening for new messages using the socket:
+    useListenMessages();
+
     useEffect(()=>{
         setTimeout(()=>{
             if(lastMessageRef.current){

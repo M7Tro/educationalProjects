@@ -27,12 +27,14 @@ export const sendMessage = async (req,res) => {
         await Promise.all([conversation.save(), newMessage.save()]);
 
         //Socket functionality:
-        const receiverSocketId = getReceiverSocketId(senderId);
+        const receiverSocketId = getReceiverSocketId(receiverId);
         //If the user is online, we:
         if(receiverSocketId){
             //Instead of io.emit, we use the specific io.to()
             //console.log("Sending the new message wit socket: ", newMessage);
+            console.log("Receiver socket id:", receiverSocketId);
             io.to(receiverSocketId).emit("newMessage", newMessage);
+            console.log("receiverSocketId:", receiverSocketId, "newMessage:", newMessage);
         }
     
         return res.status(200).json({createdAt: newMessage.createdAt, message: newMessage.message, senderId: newMessage.senderId});
