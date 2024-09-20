@@ -800,3 +800,7 @@ I get error "websocket is not connected".
 
 I am going to rewrite the last bits of code.
 
+It was important to add the authUsers into [] of useEffect in SocketContextProvider so that the socket is set up once a user is created.
+
+The "disconnect" event that is read by socket.js on the backend is caused by socket.close(). socket.close() in turn is caused by logout: when we logout is done, authUser is deleted and socket.close() is called. 
+

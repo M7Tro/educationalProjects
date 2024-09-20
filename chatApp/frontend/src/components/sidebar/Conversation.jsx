@@ -8,7 +8,7 @@ export default function Conversation ({conversation, currIdx, lastIdx, emoji}) {
     const [isOnline, setIsOnline] = useState(false);
 
     useEffect(()=>{
-        setIsOnline(onlineUsers?.includes(conversation._id) || false);
+        setIsOnline(onlineUsers?.includes(conversation._id) || false);  
         //console.log("onlineUsers:", onlineUsers);
     },[conversation, onlineUsers])
     
