@@ -25,7 +25,8 @@ export default function Messages () {
         <div className="flex flex-col items-center overflow-auto h-[480px]">
             {!loading ? (messages && messages.map((message, index) => (
                 <div className="w-full" key = {index} ref={lastMessageRef}>
-                    <Message message={message.message} createdAt={message.createdAt} senderId={message.senderId}/>
+                    <Message message={message.message} shouldShake={message?.shouldShake} 
+                    createdAt={message.createdAt} senderId={message.senderId}/>
                 </div>
             ))) : (<span className="loading loading-spinner loading-md"></span>)
             }

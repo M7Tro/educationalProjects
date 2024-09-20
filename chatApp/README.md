@@ -829,3 +829,23 @@ Somehow, I receive newMessage console log output for every user other than me.
 I found that, somehow, the receiverSocketId is the socket id of the sender. So it is a backend error at the very least.
 
 I am a f**cing idit. I passed the senderId to the getReceiverSocketId. 
+
+Now, let's continue with a few final touches. 
+
+There is a shake animation for new messages. For this, there is a keyframes animation defined in index.css.
+
+The animation is initiated using the .shake class that is attached to new messages. 
+
+To implement it, we attach a field .shouldShake = true to the newMessage object that is retrieved inside useListenMessages. 
+
+Inside Message.jsx, we define shakeClass with value either "shake" or "" depending on shouldShake.
+
+The keyframes animation does not work. Also, when new messages overflow the window the messages does not automatically scroll to bottom. Need to fix that. 
+
+For some reason, the shouldShake field evaluates to undefined. Why? We attach it inside useListenMessages and then save the newMessage inside the global context.
+
+I see. I don't pass the whole message object: I use props. I need to pass shouldShake separately. Now it works!
+
+And I also implemented the scrollIntoView with useRef. From the first TRY!
+
+Let's add the bell notification. We import the audio into useListenMessages and create an Audio object. And play it. It WORKS!
